@@ -140,9 +140,6 @@ class TornadoGenerator(object):
 	def genModel(self,entity):
 
 		entityDict=entity.getAttrs()
-		entityDict["wsurl"]="string"
-		entityDict["token"]="string"
-		entityDict["identifier"]="string"
 		modelClass = ClassGenerator(entity.getName(),**entityDict)
 		modelClass.setNameDadClass('BaseModel')
 		modelClass.addProperty()
@@ -169,6 +166,14 @@ class TornadoGenerator(object):
 		myFileGenerator= FileGenerator()
 		pathModel = self.path+"model/"
 		myFileGenerator.createDirectory(pathModel)
+		myFileGenerator.createFile(pathModel+"__init__.py")
+
+		myBaseModel = FileGenerator()
+		origen = os.path.join(os.path.dirname(__file__),"generator/default/model/basemodel.py")
+		destino=self.path+"model/basemodel.py"
+		myBaseModel.copyanything(origen,destino)
+
+
 		pathFile=self.path+"model/"+modelClass.getName().lower()+".py"
 		self.addFile(pathFile,modelClass.generate())
 
@@ -299,11 +304,31 @@ class TornadoGenerator(object):
 		fileBaseHtml.createFile(pathfile)
 		fileBaseHtml.stringToFile(pathfile,str(page))
 
-	def genEntity(self):
+	def genHomeHandler(self):
+		
+		myHomeHandler = FileGenerator()
+		origen = os.path.join(os.path.dirname(__file__),"generator/default/homehandler.py")
+		destino=self.path+"homehandler.py"
+		myHomeHandler.copyanything(origen,destino)
+
+		origen = os.path.join(os.path.dirname(__file__),"generator/default/templates/home.html")
+		destino=self.path+"/templates/home.html"
+		myHomeHandler.copyanything(origen,destino)
+
+	def genGlobals(self):
+
+		myGlobals = FileGenerator()
+		origen = os.path.join(os.path.dirname(__file__),"generator/default/globals.py")
+		destino=self.path+"globals.py"
+		myGlobals.copyanything(origen,destino)
+
+	def generate(self):
 		self.genProjectDirectory()
 		self.genStaticDirectory()
 		self.genBaseHandler()
 		self.genBaseHtml()
+		self.genHomeHandler()
+		self.genGlobals()
 		for entity in self.entitys:
 			for operator in self.operators:
 				self.genHandler(entity,operator)
@@ -331,4 +356,4 @@ if __name__ == '__main__':
 	myTornado.operators=["list","add"]
 	myTornado.path="/Users/chinostroza/jarvis/controlprint/"
 	myTornado.name="controlprint"
-	myTornado.genEntity()
+	myTornado.generate()

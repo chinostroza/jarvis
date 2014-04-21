@@ -1,0 +1,57 @@
+{% extends "../base.html" %}
+{% block body %}
+ <form action="Design" enctype="multipart/form-data" method="post" role="form">
+  <div class="form-group">
+   <label for="category">
+    category
+   </label>
+   <input class="form-control" id="category" placeholder="" type="text"/>
+  </div>
+  <div class="form-group">
+   <label for="body">
+    body
+   </label>
+   <input class="form-control" id="body" placeholder="" type="text"/>
+  </div>
+  <div class="form-group">
+   <label for="updated">
+    updated
+   </label>
+   <input class="form-control" id="updated" placeholder="" type="text"/>
+  </div>
+  <div class="form-group">
+   <label for="designer">
+    designer
+   </label>
+   <input class="form-control" id="designer" placeholder="" type="text"/>
+  </div>
+  <div class="form-group">
+   <label for="created">
+    created
+   </label>
+   <input class="form-control" id="created" placeholder="" type="text"/>
+  </div>
+  <div class="form-group">
+   <label for="title">
+    title
+   </label>
+   <input class="form-control" id="title" placeholder="" type="text"/>
+  </div>
+  <div class="form-group">
+   <label for="user">
+    user
+   </label>
+   <input class="form-control" id="user" placeholder="" type="text"/>
+  </div>
+  <div class="form-group">
+   <label for="id">
+    id
+   </label>
+   <input class="form-control" id="id" placeholder="" type="text"/>
+  </div>
+  <button class="btn btn-default" type="submit">
+   Submit
+  </button>
+  {% raw xsrf_form_html() %}
+ </form>
+ {% end %}

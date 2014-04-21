@@ -2,6 +2,7 @@ from pprint import pprint
 from functiongenerator import FunctionGenerator
 from importGenerator import importGenerator
 from fromImportGenerator import fromImportGenerator
+from filegenerator import FileGenerator
 
 class ClassGenerator(object):
 	def __init__(self,nameClass,**attrs):
@@ -11,6 +12,7 @@ class ClassGenerator(object):
 		self.listImports=[]
 		self.outStr=""
 		self.functionList = []
+		self.outFunctionList = []
 		self.nameDadClass=""
 		self.listFromImport=[]
 		self.addPythonCommand=False
@@ -97,7 +99,8 @@ class ClassGenerator(object):
 
 	def addFunction(self,objFunction):
 		self.functionList.append(objFunction)
-
+	def addOutFunction(self,objFunction):
+		self.outFunctionList.append(objFunction)
 	def createFile(self,pathfile,strFile):
 		myFileGenerator = FileGenerator()
 		myFileGenerator.createFile(self.path+pathfile)
@@ -128,7 +131,33 @@ class ClassGenerator(object):
 			self.outStr+=xfunc.generate()
 			self.outStr+="\n\n"
 
+		for xOutFunc in self.outFunctionList:
+			if xOutFunc.getDecorator() <> "":
+				self.outStr+=xOutFunc.getDecorator()+"\n"
+			self.outStr+='def ' + xOutFunc.getName() +'('+xOutFunc.getParamStr()+'):\n'
+			self.outStr+=xOutFunc.generate()
+			self.outStr+="\n\n"
+
+
 		for line in self.afterClassLines:
 			self.outStr+=line
 
 		return self.outStr	
+
+if __name__ == '__main__':
+
+	attrs=dict({
+		"path":""
+		})
+
+
+	myClass=ClassGenerator("ReadClass",**attrs)
+	myClass.setNameDadClass("object")
+	myClass.addProperty()
+	myClass.addSetter()
+	outstr=myClass.generate()
+	myClassFile=FileGenerator()
+	path="/Users/chinostroza/jarvis/ReadClass.py"
+	myClassFile.createFile(path)
+	myClassFile.stringToFile(path,outstr)
+
