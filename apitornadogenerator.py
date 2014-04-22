@@ -311,20 +311,34 @@ class ApiTornadoGenerator(TornadoGenerator):
 		self.genMain()
 
 if __name__ == '__main__':
+	userAttrs = dict({
+		"id":"Int",
+		"username":"String",
+		"password":"String",
+		"firstname":"String",
+		"lastname":"String",
+		"email":"String",
+		"avatar":"url"
+		})
 	designAttrs=dict({
 		"id":"Int",
+		"avatar":"string",
 		"created":"Date",
 		"designer":"Designer",
 		"user":"User",
 		"category":"Category",
 		"updated":"Date",
 		"title":"string",
+		"description":"string",
+		"costunit":"string",
 		"body":"json"
 	})
 
 	designEntity = Entity("Design",designAttrs)
+	userEntity = Entity("User",userAttrs)
 	listEntity=[]
 	listEntity.append(designEntity)
+	listEntity.append(userEntity)
 	myApiTornado = ApiTornadoGenerator()
 	myApiTornado.entitys=listEntity
 	myApiTornado.operators=["list","add"]

@@ -1,4 +1,22 @@
 {% extends "base.html" %}
 {% block body %}
-<p>home</p>
+{% for x in design %}
+<div class="col-lg-4 col-sm-4 hero-feature text-center">
+	<div class="thumbnail">
+		<a href="detail.html" class="link-p">
+			<img src="{{ x["avatar"] }}" alt="">
+		</a>
+		<div class="caption prod-caption">
+			<h4><a href="detail.html">{{ x["title"] }}</a></h4>
+			<p>{{ x["description"] }}</p>
+			<p>
+				<div class="btn-group">
+					<a href="#" class="btn btn-default">$ {{ x["costunit"] }}</a>
+					<a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Buy</a>
+				</div>
+			</p>
+		</div>
+	</div>
+</div>
+{% end %}
 {% end %}

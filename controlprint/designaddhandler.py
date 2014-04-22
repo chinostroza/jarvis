@@ -12,14 +12,17 @@ class DesignAddHandler(BaseHandler):
 
 	def post(self):
 		design=Design()
-		design.category=self.get_argument("category","")
 		design.body=self.get_argument("body","")
+		design.category=self.get_argument("category","")
 		design.updated=self.get_argument("updated","")
 		design.designer=self.get_argument("designer","")
+		design.costunit=self.get_argument("costunit","")
 		design.created=self.get_argument("created","")
 		design.title=self.get_argument("title","")
+		design.avatar=self.get_argument("avatar","")
 		design.user=self.get_argument("user","")
 		design.id=self.get_argument("id","")
-		design.save()
-		self.redirect("/design?dn=t")
+		design.description=self.get_argument("description","")
+		design.Save()
+
 

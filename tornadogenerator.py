@@ -64,13 +64,68 @@ class TornadoGenerator(object):
 		self._handlers.append(myHandler)
 
 	def genTemplate(self,entity,operator):
+		if operator == "list":
+			page=markup.page()
+			page.table(border=1)
+			page.thead()
+			page.tr()
+			for key,value in entity.getAttrs().iteritems():
+				page.th(key)
+				page.th.close()
+			page.tr.close()
+			page.thead.close()
+			page.tbody()
+			page.add("{% for x in "+entity.getName().lower()+" %}")
+			page.tr()
+			for key,value in entity.getAttrs().iteritems():
+				page.td()
+				page.add("{{ x[\""+key+"\"] }}")
+				page.td.close()
+			page.tr.close
+			page.add("{% end %}")
+			page.tbody.close()
+			page.table.close()
+			page.add("{% end %}")
+
+			#generate file
+			pathProject = self.path+"/templates/"+entity.getName().lower()+"/"
+			myFileGenerator = FileGenerator()
+			myFileGenerator.createDirectory(pathProject)
+			pathfile=pathProject+"/list.html"
+			myFileGenerator.createFile(pathfile)
+
+			soup = BeautifulSoup(str(page))
+			soup.body.hidden=True
+			outsrt="{% extends \"../base.html\" %}\n"
+			outsrt+="{% block body %}\n"
+			outsrt+=str(soup.body.prettify(formatter=None))
+			myFileGenerator.stringToFile(pathfile,outsrt)
+		'''
+		<table>
+			<thead>
+				<tr>
+					<!-- repeat -->
+					<th></th>
+					<!-- repeat -->
+				</tr>
+			</thead>
+			<tbody>
+				<!-- repeat -->
+				<tr>
+					<td>
+					</td>
+				</tr>
+				<!-- repeat -->
+			</tbody>
+		</table>
+		'''
 		if operator == "add":
 			page=markup.page()
-			page.form(role="form",action=entity.getName(),method="post",enctype="multipart/form-data" )
+			page.form(role="form",action="/"+entity.getName().lower()+"/add",method="post",enctype="multipart/form-data" )
 			for key,value in entity.getAttrs().iteritems():
 				page.div(class_="form-group")
 				page.label(key,for_=key)
-				page.input(type="text" ,class_="form-control", id=key, placeholder="")
+				page.input(type="text" ,class_="form-control",name=key, id=key, placeholder="")
 				page.div.close()
 			page.button("Submit",type="submit",class_="btn btn-default")
 			page.add("{% raw xsrf_form_html() %}")
@@ -119,8 +174,8 @@ class TornadoGenerator(object):
 			myDefPost.addLine("\t\t"+entity.getName().lower()+"="+entity.getName()+"()\n")
 			for key,value in listArgument.iteritems():
 				myDefPost.addLine("\t\t"+entity.getName().lower()+"."+key+"=self.get_argument(\""+key+"\",\"\")\n")
-			myDefPost.addLine("\t\t"+entity.getName().lower()+".save()\n")
-			myDefPost.addLine("\t\tself.redirect(\"/"+entity.getName().lower()+"?dn=t\")")	
+			myDefPost.addLine("\t\t"+entity.getName().lower()+".Save()\n")
+			#myDefPost.addLine("\t\tself.redirect(\"/"+entity.getName().lower()+"?dn=t\")")	
 			myHandler.addFunction(myDefPost)
 			#get list method
 		if operator == "list":
@@ -155,6 +210,8 @@ class TornadoGenerator(object):
 		modelClass.addFromImport("basehandler","BaseHandler")
 		modelClass.addFromImport("bson","json_util")
 		modelClass.addFromImport("model.basemodel ","BaseModel")
+		
+		#getlist()
 		getListFunction = FunctionGenerator("getList")
 		getListFunction.addParam("self")
 		getListFunction.addLine("\t\turl = self.wsurl()+\"/"+entity.getName().lower()+"/list?token=\"+ self.token() + \"&items=100\"\n")
@@ -163,6 +220,31 @@ class TornadoGenerator(object):
 		getListFunction.addLine("\t\tself.identifier = data\n")
 		getListFunction.addLine("\t\treturn data")
 		modelClass.addFunction(getListFunction)
+		#Save
+		'''
+		def Save(self):
+			url = self.wsurl()+"/product/add?token=" + self.token()
+
+			url += "&nombre=" + self.name
+			url += "&precio=" + self.price
+			url += "&descripcion=" + self.description
+			url += "&cantidad=" + self.quantity
+			url += "&marca=" + self.brand
+			url += "&sku=" + self.sku
+			url += "&categoria=" + self.category
+			url += "&id=" + self.identifier
+
+			return urllib.urlopen(url).read()
+		'''
+		saveFunction = FunctionGenerator("Save")
+		saveFunction.addParam("self")
+		saveFunction.addLine("\t\turl = self.wsurl()+\"/"+entity.getName().lower()+"/add?token=\" + self.token()\n")
+		for key,value in entity.getAttrs().iteritems():
+			saveFunction.addLine("\t\turl +=\"&"+key+"=\"+ self."+key+"\n")
+		saveFunction.addLine("\t\treturn urllib.urlopen(url).read()\n")
+
+		modelClass.addFunction(saveFunction)
+
 		myFileGenerator= FileGenerator()
 		pathModel = self.path+"model/"
 		myFileGenerator.createDirectory(pathModel)
@@ -282,7 +364,7 @@ class TornadoGenerator(object):
 		fileBaseHandler.stringToFile(pathfileGlobal,myBaseHandler.generate())
 
 	def genBaseHtml(self):
-
+		'''
 		page = markup.page( )
 		page.init( title=self.name, 
 					css=( "/static/lib/bootstrap-3.1.1-dist/css/bootstrap.min.css" ),
@@ -303,6 +385,11 @@ class TornadoGenerator(object):
 		fileBaseHtml.createDirectory(self.path+"templates")
 		fileBaseHtml.createFile(pathfile)
 		fileBaseHtml.stringToFile(pathfile,str(page))
+		'''
+		myBaseHtml = FileGenerator()
+		origen = os.path.join(os.path.dirname(__file__),"generator/default/templates/base.html")
+		destino=self.path+"templates/base.html"
+		myBaseHtml.copyanything(origen,destino)
 
 	def genHomeHandler(self):
 		
@@ -312,7 +399,7 @@ class TornadoGenerator(object):
 		myHomeHandler.copyanything(origen,destino)
 
 		origen = os.path.join(os.path.dirname(__file__),"generator/default/templates/home.html")
-		destino=self.path+"/templates/home.html"
+		destino=self.path+"templates/home.html"
 		myHomeHandler.copyanything(origen,destino)
 
 	def genGlobals(self):
@@ -326,8 +413,6 @@ class TornadoGenerator(object):
 		self.genProjectDirectory()
 		self.genStaticDirectory()
 		self.genBaseHandler()
-		self.genBaseHtml()
-		self.genHomeHandler()
 		self.genGlobals()
 		for entity in self.entitys:
 			for operator in self.operators:
@@ -335,22 +420,38 @@ class TornadoGenerator(object):
 				self.genTemplate(entity,operator)
 			self.genModel(entity)
 		self.genMain()
+		self.genBaseHtml()
+		self.genHomeHandler()
 
 if __name__ == '__main__':
+	userAttrs = dict({
+		"id":"Int",
+		"username":"String",
+		"password":"String",
+		"firstname":"String",
+		"lastname":"String",
+		"email":"String",
+		"avatar":"url"
+		})
 	designAttrs=dict({
 		"id":"Int",
+		"avatar":"string",
 		"created":"Date",
 		"designer":"Designer",
 		"user":"User",
 		"category":"Category",
 		"updated":"Date",
 		"title":"string",
+		"description":"string",
+		"costunit":"string",
 		"body":"json"
 	})
 
 	designEntity = Entity("Design",designAttrs)
+	userEntity = Entity("User",userAttrs)
 	listEntity=[]
 	listEntity.append(designEntity)
+	listEntity.append(userEntity)
 	myTornado = TornadoGenerator()
 	myTornado.entitys=listEntity
 	myTornado.operators=["list","add"]

@@ -7,6 +7,8 @@ import tornado.web
 from homehandler import HomeHandler
 from designlisthandler import DesignListHandler
 from designaddhandler import DesignAddHandler
+from userlisthandler import UserListHandler
+from useraddhandler import UserAddHandler
 from globals import port
 from tornado.options import define,options
 define("port", default=port, help="run on the given port", type=int)
@@ -24,7 +26,9 @@ class Application(tornado.web.Application):
 		handlers=[
 			(r"/",HomeHandler),
 			(r"/design/list",DesignListHandler),
-			(r"/design/add",DesignAddHandler)
+			(r"/design/add",DesignAddHandler),
+			(r"/user/list",UserListHandler),
+			(r"/user/add",UserAddHandler)
 		]
 
 		tornado.web.Application.__init__(self, handlers, **settings)
