@@ -1,0 +1,87 @@
+{% extends "../base.html" %}
+{% block body %}
+ <table border="1">
+  <thead>
+   <tr>
+    <th>
+     body
+    </th>
+    <th>
+     category
+    </th>
+    <th>
+     updated
+    </th>
+    <th>
+     designer
+    </th>
+    <th>
+     costunit
+    </th>
+    <th>
+     created
+    </th>
+    <th>
+     title
+    </th>
+    <th>
+     avatar
+    </th>
+    <th>
+     user
+    </th>
+    <th>
+     sku
+    </th>
+    <th>
+     identifier
+    </th>
+    <th>
+     description
+    </th>
+   </tr>
+  </thead>
+  <tbody>
+   {% for x in design %}
+   <tr>
+    <td>
+     {{ x["body"] }}
+    </td>
+    <td>
+     {{ x["category"] }}
+    </td>
+    <td>
+     {{ x["updated"] }}
+    </td>
+    <td>
+     {{ x["designer"] }}
+    </td>
+    <td>
+     {{ x["costunit"] }}
+    </td>
+    <td>
+     {{ x["created"] }}
+    </td>
+    <td>
+     {{ x["title"] }}
+    </td>
+    <td>
+     {{ x["avatar"] }}
+    </td>
+    <td>
+     {{ x["user"] }}
+    </td>
+    <td>
+     {{ x["sku"] }}
+    </td>
+    <td>
+     {{ x["identifier"] }}
+    </td>
+    <td>
+     {{ x["description"] }}
+    </td>
+    {% end %}
+   </tr>
+  </tbody>
+ </table>
+ {% end %}

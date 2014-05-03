@@ -108,6 +108,39 @@ class ApiTornadoGenerator(TornadoGenerator):
 
 			myHandler.addFromImport("basehandler","BaseHandler")
 			myHandler.addFromImport("model."+entity.getName().lower(),entity.getName())
+			myHandler.addFromImport("bson","json_util")
+			if operator == "get":
+				myDefGet = FunctionGenerator('get')
+				myDefGet.addParam("self")
+				myDefGet.addLine("\t\t#validate access token\n")
+				myDefGet.addLine("\t\tif not self.ValidateToken():\n")
+				myDefGet.addLine("\t\t\treturn\n")
+				myDefGet.addLine("\t\tidentifier = self.get_argument(\"identifier\", \"\")\n")
+				myDefGet.addLine("\t\t"+entity.getName().lower()+"="+entity.getName()+"()\n")
+				myDefGet.addLine("\t\t"+entity.getName().lower()+".InitById(identifier,self.db."+entity.getName().lower()+"s)\n")
+				myDefGet.addLine("\t\tself.write(json_util.dumps("+entity.getName().lower()+".Print()))\n")
+				myHandler.addFunction(myDefGet)
+				'''
+				class GetProductHandler(BaseHandler):
+					def get(self):
+
+						# validate access token
+						if not self.ValidateToken():
+							return
+
+
+						idd = self.get_argument("id", "")
+						sku = self.get_argument("sku", "")
+
+						product = Product()
+
+						if idd != "":
+							product.InitById(idd)
+							self.write(json_util.dumps(product.Print()))
+						else:
+							product.InitBySku(sku)
+							self.write(json_util.dumps(product.Print()))
+				'''
 			if operator == "add":
 				'''
 				# validate access token
@@ -203,10 +236,95 @@ class ApiTornadoGenerator(TornadoGenerator):
 		modelClass.addFromImport("bson.objectid","ObjectId")
 		modelClass.addFromImport("basemodel ","BaseModel")
 
+		myInitByIdFunction = FunctionGenerator("InitById")
+		myInitByIdFunction.addParam("self")
+		myInitByIdFunction.addParam("identifier")
+		myInitByIdFunction.addParam("collection")
+		myInitByIdFunction.addLine("\t\tdata = collection.find({\"_id\":ObjectId(identifier)})\n")
+		myInitByIdFunction.addLine("\t\tif data.count() >= 1:\n")
+		for key,value in entity.getAttrs().iteritems():
+			if key == "identifier":
+				myInitByIdFunction.addLine("\t\t\tself.identifier = str(data[0][\"_id\"])\n")
+			else:
+				myInitByIdFunction.addLine("\t\t\tself."+key+" = data[0][\""+key+"\"]\n")
+		#myInitByIdFunction.addLine("\t\t\treturn self.ShowSuccessMessage(\"product initialized\")\n")
+		#myInitByIdFunction.addLine("\t\treturn self.ShowError(\"product can not be initialized\")\n")
+		modelClass.addFunction(myInitByIdFunction)
+		'''
+			def InitById(self, identifier):
+				data = self.collection.find({"_id":ObjectId(identifier)})
+
+				if data.count() >= 1:
+					self.identifier = str(data[0]["_id"])
+					self.name = data[0]["name"]
+					self.description = data[0]["description"]
+					self.brand = data[0]["brand"]
+					self.manufacturer = data[0]["manufacturer"]
+					self.size = data[0]["size"]
+					self.color = data[0]["color"]
+					self.material = data[0]["color"]
+					self.bullet_point_1 = data[0]["bullet_point_1"]
+					self.bullet_point_2 = data[0]["bullet_point_2"]
+					self.bullet_point_3 = data[0]["bullet_point_3"]
+					self.image = data[0]["image"]
+					self.image_2 = data[0]["image_2"]
+					self.image_3 = data[0]["image_3"]
+					self.category = data[0]["category"]
+					self.sku = data[0]["sku"]
+
+					return self.ShowSuccessMessage("product initialized")
+				return self.ShowError("product can not be initialized")
+		'''
+
+		'''
+			def Print(self):
+				try:
+					rtn_data = {
+						"_id":ObjectId(self.identifier),
+						"name":self.name,
+						"description":self.description,
+						"sku":self.sku,
+						"brand":self.brand,
+						"manufacturer":self.manufacturer,
+						"size":self.size,
+						"color":self.color,
+						"material":self.material,
+						"bullet_point_1":self.bullet_point_1,
+						"bullet_point_2":self.bullet_point_2,
+						"bullet_point_3":self.bullet_point_3,
+						"image":self.image,
+						"image_2":self.image_2,
+						"image_3":self.image_3,
+						"category":self.category
+					}
+
+					return rtn_data
+				except Exception, e:
+					return self.ShowError("id: " + self.identifier + " not found")
+		'''
+		myPrintFunction = FunctionGenerator("Print")
+		myPrintFunction.addParam("self")
+		myPrintFunction.addLine("\t\ttry:\n")
+		myPrintFunction.addLine("\t\t\tdata = {\n")
+		cantAttrs = len(entity.getAttrs())
+		contAttrs = 0
+		for key,value in entity.getAttrs().iteritems():
+			if key == "identifier":
+				myPrintFunction.addLine("\t\t\t\t\"_id\":ObjectId(self."+key+"),\n")
+			elif contAttrs == (cantAttrs - 1):
+				myPrintFunction.addLine("\t\t\t\t\""+key+"\": self."+key+"\n")
+			else:
+				myPrintFunction.addLine("\t\t\t\t\""+key+"\": self."+key+",\n")
+		myPrintFunction.addLine("\t\t\t}\n")
+		myPrintFunction.addLine("\t\t\treturn data\n")
+		myPrintFunction.addLine("\t\texcept Exception, e:\n")
+		myPrintFunction.addLine("\t\t\treturn self.ShowError(\"id: \" + self.identifier + \" not found\")\n")
+		modelClass.addFunction(myPrintFunction)
+		
 		mySaveFunction = FunctionGenerator("Save")
 		mySaveFunction.addParam("self")
 		mySaveFunction.addParam("collection")
-		mySaveFunction.addLine("\t\tdata = collection.find({\"id\" : self.id})\n")
+		mySaveFunction.addLine("\t\tdata = collection.find({\"sku\" : self.sku})\n")
 		mySaveFunction.addLine("\t\tif data.count() >= 1:\n")
 		mySaveFunction.addLine("\t\t\tcollection.update(\n")
 		mySaveFunction.addLine("\t\t\t\t{\"_id\" : data[0][\"_id\"]},\n")
@@ -311,38 +429,22 @@ class ApiTornadoGenerator(TornadoGenerator):
 		self.genMain()
 
 if __name__ == '__main__':
-	userAttrs = dict({
-		"id":"Int",
-		"username":"String",
-		"password":"String",
-		"firstname":"String",
-		"lastname":"String",
-		"email":"String",
-		"avatar":"url"
-		})
-	designAttrs=dict({
-		"id":"Int",
-		"avatar":"string",
-		"created":"Date",
-		"designer":"Designer",
-		"user":"User",
-		"category":"Category",
-		"updated":"Date",
-		"title":"string",
-		"description":"string",
-		"costunit":"string",
-		"body":"json"
+	cartAttrs=dict({
+		"identifier":"string",
+		"total":"Float",
+		"userid":"String",
+		"date":"datetime",
+		"items":"json"
 	})
 
-	designEntity = Entity("Design",designAttrs)
-	userEntity = Entity("User",userAttrs)
+
+	cartEntity = Entity("Cart",cartAttrs)
 	listEntity=[]
-	listEntity.append(designEntity)
-	listEntity.append(userEntity)
+	listEntity.append(cartEntity)
 	myApiTornado = ApiTornadoGenerator()
 	myApiTornado.entitys=listEntity
-	myApiTornado.operators=["list","add"]
-	myApiTornado.path="/Users/chinostroza/jarvis/wscontrolprint/"
+	myApiTornado.operators=["list","add","get"]
+	myApiTornado.path="/Users/chinostroza/apiCodeWeb2Print/cart/"
 	myApiTornado.name="wscontrolprint"
 	myApiTornado.namedb="controlprint"
 	myApiTornado.port=9999

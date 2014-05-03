@@ -20,7 +20,8 @@ class Design(BaseModel):
 		self._description=None
 		self._title=None
 		self._avatar=None
-		self._id=None
+		self._sku=None
+		self._identifier=None
 		self._user=None
 
 	@property
@@ -60,8 +61,12 @@ class Design(BaseModel):
 		return self._avatar
 
 	@property
-	def id(self):
-		return self._id
+	def sku(self):
+		return self._sku
+
+	@property
+	def identifier(self):
+		return self._identifier
 
 	@property
 	def user(self):
@@ -103,9 +108,13 @@ class Design(BaseModel):
 	def avatar(self,value):
 		self._avatar=value
 
-	@id.setter
-	def id(self,value):
-		self._id=value
+	@sku.setter
+	def sku(self,value):
+		self._sku=value
+
+	@identifier.setter
+	def identifier(self,value):
+		self._identifier=value
 
 	@user.setter
 	def user(self,value):
@@ -129,8 +138,53 @@ class Design(BaseModel):
 		url +="&title="+ self.title
 		url +="&avatar="+ self.avatar
 		url +="&user="+ self.user
-		url +="&id="+ self.id
+		url +="&sku="+ self.sku
+		url +="&identifier="+ self.identifier
 		url +="&description="+ self.description
 		return urllib.urlopen(url).read()
 
+	def jsonInitById(self,identifier):
+		url = self.wsurl()+"/design/get"
+		url += "?token=" + self.token()
+		url += "&identifier=" + identifier
+		return urllib.urlopen(url).read()
+
+	def InitById(self,identifier):
+		url = self.wsurl()+"/design/get"
+		url += "?token=" + self.token()
+		url += "&identifier=" + identifier
+		json_string = urllib.urlopen(url).read()
+		data = json_util.loads(json_string)
+		self.body=data["body"]
+		self.category=data["category"]
+		self.updated=data["updated"]
+		self.designer=data["designer"]
+		self.costunit=data["costunit"]
+		self.created=data["created"]
+		self.title=data["title"]
+		self.avatar=data["avatar"]
+		self.user=data["user"]
+		self.sku=data["sku"]
+		self.identifier=str(data["_id"])
+		self.description=data["description"]
+		return data
+	def CopyById(self,identifier):
+		url = self.wsurl()+"/design/copy"
+		url += "?token=" + self.token()
+		url += "&identifier=" + identifier
+		json_string = urllib.urlopen(url).read()
+		data = json_util.loads(json_string)
+		self.body=data["body"]
+		self.category=data["category"]
+		self.updated=data["updated"]
+		self.designer=data["designer"]
+		self.costunit=data["costunit"]
+		self.created=data["created"]
+		self.title=data["title"]
+		self.avatar=data["avatar"]
+		self.user=data["user"]
+		self.sku=data["sku"]
+		self.identifier=str(data["_id"])
+		self.description=data["description"]
+		return data
 

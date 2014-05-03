@@ -64,86 +64,96 @@ class TornadoGenerator(object):
 		self._handlers.append(myHandler)
 
 	def genTemplate(self,entity,operator):
-		if operator == "list":
-			page=markup.page()
-			page.table(border=1)
-			page.thead()
-			page.tr()
-			for key,value in entity.getAttrs().iteritems():
-				page.th(key)
-				page.th.close()
-			page.tr.close()
-			page.thead.close()
-			page.tbody()
-			page.add("{% for x in "+entity.getName().lower()+" %}")
-			page.tr()
-			for key,value in entity.getAttrs().iteritems():
-				page.td()
-				page.add("{{ x[\""+key+"\"] }}")
-				page.td.close()
-			page.tr.close
-			page.add("{% end %}")
-			page.tbody.close()
-			page.table.close()
-			page.add("{% end %}")
 
-			#generate file
+		file_path = os.path.join(os.path.dirname(__file__),"generator/default/") + "templates/"+entity.getName().lower()+"/"+operator+".html"
+		if os.path.isfile(file_path):
+			#create directory
 			pathProject = self.path+"/templates/"+entity.getName().lower()+"/"
 			myFileGenerator = FileGenerator()
 			myFileGenerator.createDirectory(pathProject)
-			pathfile=pathProject+"/list.html"
-			myFileGenerator.createFile(pathfile)
+			#copyFile
+			myFileGenerator.copyanything(file_path,pathProject+operator+".html")
+		else:
+			if (operator == "list") or (operator == "get"):
+				page=markup.page()
+				page.table(border=1)
+				page.thead()
+				page.tr()
+				for key,value in entity.getAttrs().iteritems():
+					page.th(key)
+					page.th.close()
+				page.tr.close()
+				page.thead.close()
+				page.tbody()
+				page.add("{% for x in "+entity.getName().lower()+" %}")
+				page.tr()
+				for key,value in entity.getAttrs().iteritems():
+					page.td()
+					page.add("{{ x[\""+key+"\"] }}")
+					page.td.close()
+				page.tr.close
+				page.add("{% end %}")
+				page.tbody.close()
+				page.table.close()
+				page.add("{% end %}")
 
-			soup = BeautifulSoup(str(page))
-			soup.body.hidden=True
-			outsrt="{% extends \"../base.html\" %}\n"
-			outsrt+="{% block body %}\n"
-			outsrt+=str(soup.body.prettify(formatter=None))
-			myFileGenerator.stringToFile(pathfile,outsrt)
-		'''
-		<table>
-			<thead>
-				<tr>
-					<!-- repeat -->
-					<th></th>
-					<!-- repeat -->
-				</tr>
-			</thead>
-			<tbody>
-				<!-- repeat -->
-				<tr>
-					<td>
-					</td>
-				</tr>
-				<!-- repeat -->
-			</tbody>
-		</table>
-		'''
-		if operator == "add":
-			page=markup.page()
-			page.form(role="form",action="/"+entity.getName().lower()+"/add",method="post",enctype="multipart/form-data" )
-			for key,value in entity.getAttrs().iteritems():
-				page.div(class_="form-group")
-				page.label(key,for_=key)
-				page.input(type="text" ,class_="form-control",name=key, id=key, placeholder="")
-				page.div.close()
-			page.button("Submit",type="submit",class_="btn btn-default")
-			page.add("{% raw xsrf_form_html() %}")
-			page.form.close()
-			page.add("{% end %}")
-			#generate file
-			pathProject = self.path+"/templates/"+entity.getName().lower()+"/"
-			myFileGenerator = FileGenerator()
-			myFileGenerator.createDirectory(pathProject)
-			pathfile=pathProject+"/add.html"
-			myFileGenerator.createFile(pathfile)
+				#generate file
+				pathProject = self.path+"/templates/"+entity.getName().lower()+"/"
+				myFileGenerator = FileGenerator()
+				myFileGenerator.createDirectory(pathProject)
+				pathfile=pathProject+"/list.html"
+				myFileGenerator.createFile(pathfile)
 
-			soup = BeautifulSoup(str(page))
-			soup.body.hidden=True
-			outsrt="{% extends \"../base.html\" %}\n"
-			outsrt+="{% block body %}\n"
-			outsrt+=str(soup.body.prettify(formatter=None))
-			myFileGenerator.stringToFile(pathfile,outsrt)
+				soup = BeautifulSoup(str(page))
+				soup.body.hidden=True
+				outsrt="{% extends \"../base.html\" %}\n"
+				outsrt+="{% block body %}\n"
+				outsrt+=str(soup.body.prettify(formatter=None))
+				myFileGenerator.stringToFile(pathfile,outsrt)
+			'''
+			<table>
+				<thead>
+					<tr>
+						<!-- repeat -->
+						<th></th>
+						<!-- repeat -->
+					</tr>
+				</thead>
+				<tbody>
+					<!-- repeat -->
+					<tr>
+						<td>
+						</td>
+					</tr>
+					<!-- repeat -->
+				</tbody>
+			</table>
+			'''
+			if operator == "add":
+				page=markup.page()
+				page.form(role="form",action="/"+entity.getName().lower()+"/add",method="post",enctype="multipart/form-data" )
+				for key,value in entity.getAttrs().iteritems():
+					page.div(class_="form-group")
+					page.label(key,for_=key)
+					page.input(type="text" ,class_="form-control",name=key, id=key, placeholder="")
+					page.div.close()
+				page.button("Submit",type="submit",class_="btn btn-default")
+				page.add("{% raw xsrf_form_html() %}")
+				page.form.close()
+				page.add("{% end %}")
+				#generate file
+				pathProject = self.path+"/templates/"+entity.getName().lower()+"/"
+				myFileGenerator = FileGenerator()
+				myFileGenerator.createDirectory(pathProject)
+				pathfile=pathProject+"/add.html"
+				myFileGenerator.createFile(pathfile)
+
+				soup = BeautifulSoup(str(page))
+				soup.body.hidden=True
+				outsrt="{% extends \"../base.html\" %}\n"
+				outsrt+="{% block body %}\n"
+				outsrt+=str(soup.body.prettify(formatter=None))
+				myFileGenerator.stringToFile(pathfile,outsrt)
 
 	def genHandler(self,entity,operator):
 		outStr=""
@@ -160,6 +170,35 @@ class TornadoGenerator(object):
 
 		myHandler.addFromImport("basehandler","BaseHandler")
 		myHandler.addFromImport("model."+entity.getName().lower(),entity.getName())
+		if operator == "get":
+			myDefGet = FunctionGenerator("get")
+			myDefGet.addParam("self")
+			myDefGet.addParam("identifier")
+			myDefGet.addLine("\t\t"+entity.getName().lower()+"="+entity.getName()+"()\n")
+			myDefGet.addLine("\t\tself.render(\""+entity.getName().lower()+"/get.html\","+entity.getName().lower()+"="+entity.getName().lower()+".InitById(identifier))")
+			myHandler.addFunction(myDefGet)
+			'''
+			class GetProductHandler(BaseHandler):
+				def get(self):
+
+					# validate access token
+					if not self.ValidateToken():
+						return
+
+
+					idd = self.get_argument("id", "")
+					sku = self.get_argument("sku", "")
+
+					product = Product()
+
+					if idd != "":
+						product.InitById(idd)
+						self.write(json_util.dumps(product.Print()))
+					else:
+						product.InitBySku(sku)
+						self.write(json_util.dumps(product.Print()))
+			'''
+
 		if operator == "add":
 			#get add method
 			myDefGet = FunctionGenerator('get')
@@ -245,6 +284,44 @@ class TornadoGenerator(object):
 
 		modelClass.addFunction(saveFunction)
 
+		initByIdFunction = FunctionGenerator("InitById")
+		initByIdFunction.addParam("self")
+		initByIdFunction.addParam("identifier")
+		initByIdFunction.addLine("\t\turl = self.wsurl()+\"/"+entity.getName().lower()+"/get\"\n")
+		initByIdFunction.addLine("\t\turl += \"?token=\" + self.token()\n")
+		initByIdFunction.addLine("\t\turl += \"&identifier=\" + identifier\n")
+
+		initByIdFunction.addLine("\t\tjson_string = urllib.urlopen(url).read()\n")
+		initByIdFunction.addLine("\t\tdata = json_util.loads(json_string)\n")
+
+		for key,value in entity.getAttrs().iteritems():
+			if key == "identifier":
+				initByIdFunction.addLine("\t\tself."+key+"=str(data[\"_id\"])\n")
+			else:
+				initByIdFunction.addLine("\t\tself."+key+"=data[\""+key+"\"]\n")
+
+		initByIdFunction.addLine("\t\treturn data")
+		modelClass.addFunction(initByIdFunction)
+		'''
+			def InitWithId(self, idd):
+				url = self.wsurl() + "/product/find"
+
+				url += "?token=" + self.token()
+				url += "&id=" + idd
+
+				json_string = urllib.urlopen(url).read()
+				data = json_util.loads(json_string)
+
+				self.name = data["nombre"]
+				self.identifier = str(data["_id"])
+				self.price = data["precio"]
+				self.description = data["descripcion"]
+				self.quantity = data["stock"]
+				self.brand = data["marca"]
+				self.sku = data["codigo_interno"]
+				self.category = data["familia"]
+		'''
+
 		myFileGenerator= FileGenerator()
 		pathModel = self.path+"model/"
 		myFileGenerator.createDirectory(pathModel)
@@ -278,7 +355,11 @@ class TornadoGenerator(object):
 		for entity in self.entitys:
 			for operator in self.operators:
 				myHandler = Handler()
-				myHandler.url = "r\"/"+entity.getName().lower() + "/" + operator+"\""
+				if operator == "get":
+					#([^/]+)
+					myHandler.url = "r\"/"+entity.getName().lower() + "/" + operator+"/([^/]+)\""
+				else:
+					myHandler.url = "r\"/"+entity.getName().lower() + "/" + operator+"\""
 				myHandler.classHandler=entity.getName().title()+operator.title()+"Handler"
 				self.addHandler(myHandler)
 				tornadoClass.addFromImport(myHandler.classHandler.lower(),myHandler.classHandler)
@@ -424,37 +505,23 @@ class TornadoGenerator(object):
 		self.genHomeHandler()
 
 if __name__ == '__main__':
-	userAttrs = dict({
-		"id":"Int",
-		"username":"String",
-		"password":"String",
-		"firstname":"String",
-		"lastname":"String",
-		"email":"String",
-		"avatar":"url"
-		})
-	designAttrs=dict({
-		"id":"Int",
-		"avatar":"string",
-		"created":"Date",
-		"designer":"Designer",
-		"user":"User",
-		"category":"Category",
-		"updated":"Date",
-		"title":"string",
-		"description":"string",
-		"costunit":"string",
-		"body":"json"
+	
+
+	#cart.addItem({'ID' : 101, 'itemNumber' : 'product_1', 'price': 12.5, 'weight': 120});
+	cartAttrs=dict({
+		"identifier":"string",
+		"total":"Float",
+		"userid":"String",
+		"date":"datetime",
+		"items":"json"
 	})
 
-	designEntity = Entity("Design",designAttrs)
-	userEntity = Entity("User",userAttrs)
+	cartEntity = Entity("Cart",cartAttrs)
 	listEntity=[]
-	listEntity.append(designEntity)
-	listEntity.append(userEntity)
+	listEntity.append(cartEntity)
 	myTornado = TornadoGenerator()
 	myTornado.entitys=listEntity
-	myTornado.operators=["list","add"]
-	myTornado.path="/Users/chinostroza/jarvis/controlprint/"
+	myTornado.operators=["list","add","get"]
+	myTornado.path="/Users/chinostroza/codeWeb2Print/cart/"
 	myTornado.name="controlprint"
 	myTornado.generate()

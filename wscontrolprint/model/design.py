@@ -13,7 +13,8 @@ class Design(BaseModel):
 		self._description=None
 		self._title=None
 		self._avatar=None
-		self._id=None
+		self._sku=None
+		self._identifier=None
 		self._user=None
 
 	@property
@@ -53,8 +54,12 @@ class Design(BaseModel):
 		return self._avatar
 
 	@property
-	def id(self):
-		return self._id
+	def sku(self):
+		return self._sku
+
+	@property
+	def identifier(self):
+		return self._identifier
 
 	@property
 	def user(self):
@@ -96,16 +101,92 @@ class Design(BaseModel):
 	def avatar(self,value):
 		self._avatar=value
 
-	@id.setter
-	def id(self,value):
-		self._id=value
+	@sku.setter
+	def sku(self,value):
+		self._sku=value
+
+	@identifier.setter
+	def identifier(self,value):
+		self._identifier=value
 
 	@user.setter
 	def user(self,value):
 		self._user=value
 
+	def CopyById(self,identifier,collection):
+		data = collection.find({"_id":ObjectId(identifier)})
+		if data.count() >= 1:
+			self.body = data[0]["body"]
+			self.category = data[0]["category"]
+			self.updated = data[0]["updated"]
+			self.designer = data[0]["designer"]
+			self.costunit = data[0]["costunit"]
+			self.created = data[0]["created"]
+			self.title = data[0]["title"]
+			self.avatar = data[0]["avatar"]
+			self.user = data[0]["user"]
+			self.sku = data[0]["sku"]
+			self.identifier = str(data[0]["_id"])
+			self.description = data[0]["description"]
+
+		object_id = collection.insert(
+			{
+				"body": self.body,
+				"category": self.category,
+				"updated": self.updated,
+				"designer": self.designer,
+				"costunit": self.costunit,
+				"created": self.created,
+				"title": self.title,
+				"avatar": self.avatar,
+				"user": self.user,
+				"sku": self.sku,
+				"identifier": self.identifier,
+				"description": self.description,
+			})
+		return str(object_id)
+
+
+	def InitById(self,identifier,collection):
+		data = collection.find({"_id":ObjectId(identifier)})
+		if data.count() >= 1:
+			self.body = data[0]["body"]
+			self.category = data[0]["category"]
+			self.updated = data[0]["updated"]
+			self.designer = data[0]["designer"]
+			self.costunit = data[0]["costunit"]
+			self.created = data[0]["created"]
+			self.title = data[0]["title"]
+			self.avatar = data[0]["avatar"]
+			self.user = data[0]["user"]
+			self.sku = data[0]["sku"]
+			self.identifier = str(data[0]["_id"])
+			self.description = data[0]["description"]
+
+
+	def Print(self):
+		try:
+			data = {
+				"body": self.body,
+				"category": self.category,
+				"updated": self.updated,
+				"designer": self.designer,
+				"costunit": self.costunit,
+				"created": self.created,
+				"title": self.title,
+				"avatar": self.avatar,
+				"user": self.user,
+				"sku": self.sku,
+				"_id":ObjectId(self.identifier),
+				"description": self.description,
+			}
+			return data
+		except Exception, e:
+			return self.ShowError("id: " + self.identifier + " not found")
+
+
 	def Save(self,collection):
-		data = collection.find({"id" : self.id})
+		data = collection.find({"sku" : self.sku})
 		if data.count() >= 1:
 			collection.update(
 				{"_id" : data[0]["_id"]},
@@ -119,7 +200,8 @@ class Design(BaseModel):
 					"title": self.title,
 					"avatar": self.avatar,
 					"user": self.user,
-					"id": self.id,
+					"sku": self.sku,
+					"identifier": self.identifier,
 					"description": self.description
 				}})
 			return str(data[0]["_id"])
@@ -135,7 +217,8 @@ class Design(BaseModel):
 				"title": self.title,
 				"avatar": self.avatar,
 				"user": self.user,
-				"id": self.id,
+				"sku": self.sku,
+				"identifier": self.identifier,
 				"description": self.description,
 			})
 		return str(object_id)
