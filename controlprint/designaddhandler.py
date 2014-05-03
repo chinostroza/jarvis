@@ -21,7 +21,8 @@ class DesignAddHandler(BaseHandler):
 		design.title=self.get_argument("title","")
 		design.avatar=self.get_argument("avatar","")
 		design.user=self.get_argument("user","")
-		design.id=self.get_argument("id","")
+		design.sku=self.get_argument("sku","")
+		design.identifier=self.get_argument("identifier","")
 		design.description=self.get_argument("description","")
 		design.Save()
 
