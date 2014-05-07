@@ -507,21 +507,28 @@ class TornadoGenerator(object):
 if __name__ == '__main__':
 	
 
-	#cart.addItem({'ID' : 101, 'itemNumber' : 'product_1', 'price': 12.5, 'weight': 120});
-	cartAttrs=dict({
+	
+	checkoutAttrs=dict({
 		"identifier":"string",
-		"total":"Float",
-		"userid":"String",
-		"date":"datetime",
-		"items":"json"
+		"firstname":"string",
+		"lastname":"string",
+		"email":"email",
+		"telephone":"telephone",
+		"address":"string",
+		"city":"string",
+		"postcode":"string",
+		"country":"int",
+		"regionstate":"int",
+		"comment":"",
+		"formapago":"int"
 	})
 
-	cartEntity = Entity("Cart",cartAttrs)
+	checkoutEntity = Entity("Checkout",checkoutAttrs)
 	listEntity=[]
-	listEntity.append(cartEntity)
+	listEntity.append(checkoutEntity)
 	myTornado = TornadoGenerator()
 	myTornado.entitys=listEntity
-	myTornado.operators=["list","add","get"]
+	myTornado.operators=["add"]
 	myTornado.path="/Users/chinostroza/codeWeb2Print/cart/"
 	myTornado.name="controlprint"
 	myTornado.generate()

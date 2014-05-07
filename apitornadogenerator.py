@@ -324,7 +324,7 @@ class ApiTornadoGenerator(TornadoGenerator):
 		mySaveFunction = FunctionGenerator("Save")
 		mySaveFunction.addParam("self")
 		mySaveFunction.addParam("collection")
-		mySaveFunction.addLine("\t\tdata = collection.find({\"sku\" : self.sku})\n")
+		mySaveFunction.addLine("\t\tdata = collection.find({\"identifier\" : self.identifier})\n")
 		mySaveFunction.addLine("\t\tif data.count() >= 1:\n")
 		mySaveFunction.addLine("\t\t\tcollection.update(\n")
 		mySaveFunction.addLine("\t\t\t\t{\"_id\" : data[0][\"_id\"]},\n")
@@ -429,21 +429,29 @@ class ApiTornadoGenerator(TornadoGenerator):
 		self.genMain()
 
 if __name__ == '__main__':
-	cartAttrs=dict({
+	
+	checkoutAttrs=dict({
 		"identifier":"string",
-		"total":"Float",
-		"userid":"String",
-		"date":"datetime",
-		"items":"json"
+		"firstname":"string",
+		"lastname":"string",
+		"email":"email",
+		"telephone":"telephone",
+		"address":"string",
+		"city":"string",
+		"postcode":"string",
+		"country":"int",
+		"regionstate":"int",
+		"comment":"",
+		"formapago":"int"
 	})
 
 
-	cartEntity = Entity("Cart",cartAttrs)
+	checkoutEntity = Entity("Checkout",checkoutAttrs)
 	listEntity=[]
-	listEntity.append(cartEntity)
+	listEntity.append(checkoutEntity)
 	myApiTornado = ApiTornadoGenerator()
 	myApiTornado.entitys=listEntity
-	myApiTornado.operators=["list","add","get"]
+	myApiTornado.operators=["add"]
 	myApiTornado.path="/Users/chinostroza/apiCodeWeb2Print/cart/"
 	myApiTornado.name="wscontrolprint"
 	myApiTornado.namedb="controlprint"

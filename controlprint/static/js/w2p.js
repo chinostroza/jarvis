@@ -37,7 +37,8 @@ function Cart(){
   	this.db = new WebStorage('cart')
   	this.detailId = "cart-detail";
   	this.cartContentHeaderId = "cart-content";
-  	this.checkoutCartContent="checkout-cart-content"
+  	this.checkoutCartContent="checkout-cart-content";
+  	this.formCheckOut="form-checkout"
 
   	if(this.isCart()){
   		var cart = this.db.get();
@@ -269,6 +270,37 @@ function Product(identificador,image,link,title,unit,stotal){
 
 Product.prototype.get = function(){ return this }
 
+/**
+	Class CheckOut
+**/
+
+function CheckOut(){
+
+}
+
+CheckOut.prototype.confirm = function () {
+	
+	//send data
+	var formObje=document.getElementById(myCart.formCheckOut);
+	
+	//TODO validar
+	var param = $( "#" + myCart.formCheckOut ).serialize();
+	param += "&cart="+JSON.stringify(myCart.get());
+
+	//Post ajax request	
+	$.ajax({
+		  type: "POST",
+		  url: formObje.action,
+		  data: param,
+		  success: function( data ) {
+    			//TODO generar mensaje de retorno
+    			alert( "Compra de mentira OK" );
+    		}
+		});
+	
+	return false;
+}
+
 /*
    actions of buttons
 */
@@ -280,6 +312,9 @@ $( document ).ready(function() {
 
 	// init shopping list
 	myShoppingCartList =  new ShoppingCartList();
+
+	// init CheckOut
+	myCheckOut = new CheckOut();
 	
 	//update a header shopping cart
 	myShoppingCartList.update(myCart.get());

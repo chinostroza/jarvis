@@ -12,13 +12,10 @@ class UserAddHandler(BaseHandler):
 		if not self.ValidateToken():
 			return
 		user=User()
-		user.username=self.get_argument("username","")
-		user.password=self.get_argument("password","")
-		user.avatar=self.get_argument("avatar","")
-		user.firstname=self.get_argument("firstname","")
-		user.lastname=self.get_argument("lastname","")
-		user.identifier=self.get_argument("identifier","")
+		user.name=self.get_argument("name","")
 		user.email=self.get_argument("email","")
+		user.password=self.get_argument("password","")
+
 		oid=user.Save(self.db.users)
 		self.write(oid)
 

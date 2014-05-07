@@ -1,0 +1,81 @@
+{% extends "../base.html" %}
+{% block body %}
+ <form action="/checkout/add" enctype="multipart/form-data" method="post" role="form">
+  <div class="form-group">
+   <label for="comment">
+    comment
+   </label>
+   <input class="form-control" id="comment" name="comment" placeholder="" type="text"/>
+  </div>
+  <div class="form-group">
+   <label for="formapago">
+    formapago
+   </label>
+   <input class="form-control" id="formapago" name="formapago" placeholder="" type="text"/>
+  </div>
+  <div class="form-group">
+   <label for="identifier">
+    identifier
+   </label>
+   <input class="form-control" id="identifier" name="identifier" placeholder="" type="text"/>
+  </div>
+  <div class="form-group">
+   <label for="firstname">
+    firstname
+   </label>
+   <input class="form-control" id="firstname" name="firstname" placeholder="" type="text"/>
+  </div>
+  <div class="form-group">
+   <label for="city">
+    city
+   </label>
+   <input class="form-control" id="city" name="city" placeholder="" type="text"/>
+  </div>
+  <div class="form-group">
+   <label for="regionstate">
+    regionstate
+   </label>
+   <input class="form-control" id="regionstate" name="regionstate" placeholder="" type="text"/>
+  </div>
+  <div class="form-group">
+   <label for="lastname">
+    lastname
+   </label>
+   <input class="form-control" id="lastname" name="lastname" placeholder="" type="text"/>
+  </div>
+  <div class="form-group">
+   <label for="telephone">
+    telephone
+   </label>
+   <input class="form-control" id="telephone" name="telephone" placeholder="" type="text"/>
+  </div>
+  <div class="form-group">
+   <label for="postcode">
+    postcode
+   </label>
+   <input class="form-control" id="postcode" name="postcode" placeholder="" type="text"/>
+  </div>
+  <div class="form-group">
+   <label for="address">
+    address
+   </label>
+   <input class="form-control" id="address" name="address" placeholder="" type="text"/>
+  </div>
+  <div class="form-group">
+   <label for="country">
+    country
+   </label>
+   <input class="form-control" id="country" name="country" placeholder="" type="text"/>
+  </div>
+  <div class="form-group">
+   <label for="email">
+    email
+   </label>
+   <input class="form-control" id="email" name="email" placeholder="" type="text"/>
+  </div>
+  <button class="btn btn-default" type="submit">
+   Submit
+  </button>
+  {% raw xsrf_form_html() %}
+ </form>
+ {% end %}

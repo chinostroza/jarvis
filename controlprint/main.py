@@ -5,11 +5,14 @@ import tornado.httpserver
 import tornado.ioloop
 import tornado.web
 from homehandler import HomeHandler
+from signuphandler import SignUpHandler
 from carthandler import CartHandler
 from cartlisthandler import CartListHandler
 from cartaddhandler import CartAddHandler
 from cartgethandler import CartGetHandler
 from checkouthandler import CheckoutHandler
+from checkoutaddhandler import CheckoutAddHandler
+from checkoutgethandler import CheckOutGetHandler
 from designlisthandler import DesignListHandler
 from designaddhandler import DesignAddHandler
 from designgethandler import DesignGetHandler
@@ -33,11 +36,14 @@ class Application(tornado.web.Application):
 
 		handlers=[
 			(r"/",HomeHandler),
+			(r"/signup",SignUpHandler),
 			(r"/cart",CartHandler),
 			(r"/cart/list",CartListHandler),
 			(r"/cart/add",CartAddHandler),
 			(r"/cart/get/([^/]+)",CartGetHandler),
 			(r"/checkout",CheckoutHandler),
+			(r"/checkout/add",CheckoutAddHandler),
+			(r"/checkout/get",CheckOutGetHandler),
 			(r"/design/list",DesignListHandler),
 			(r"/design/add",DesignAddHandler),
 			(r"/design/get",DesignGetHandler),
