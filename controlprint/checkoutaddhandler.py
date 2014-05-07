@@ -5,6 +5,7 @@ import tornado.options
 import tornado.web
 from basehandler import BaseHandler
 from model.checkout import Checkout
+from model.user import User
 class CheckoutAddHandler(BaseHandler):
 	def get(self):
 		checkout=Checkout()
@@ -25,4 +26,8 @@ class CheckoutAddHandler(BaseHandler):
 		checkout.country=self.get_argument("country","")
 		checkout.email=self.get_argument("email","")
 		checkout.cart = self.get_argument("cart","")
+		myUser = User()
+		user_cookie=self.get_current_user()
+		user = myUser.InitById(user_cookie["email"])
+		checkout.userid = user["identifier"]
 		checkout.Save()

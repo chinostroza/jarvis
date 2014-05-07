@@ -1,13 +1,13 @@
 <!--
- templates/checkout/home.html
+ templates/signup.html
 -->
-{% extends "../base.html" %}
+{% extends "base.html" %}
 {% block body %}
     <div class="container main-container">
         <div class="row">
         	<div class="col-lg-3 col-md-3 col-sm-12">
 
-				<!-- RECENT PRODUCT -->
+				<!-- RECENT PRODUCT 
 				<div class="col-lg-12 col-md-12 col-sm-12">
 					<div class="no-padding">
 	            		<span class="title">RECENT PRODUCT</span>
@@ -43,8 +43,7 @@
 		                    </div>
 		                </div>
 				</div>
-				<!-- End RECENT PRODUCT -->
-
+				 End RECENT PRODUCT -->
         	</div>
 
         	<div class="clearfix visible-sm"></div>
@@ -52,44 +51,34 @@
 			<!-- Cart -->
         	<div class="col-lg-9 col-md-9 col-sm-12">
         		<div class="col-lg-12 col-sm-12">
-            		<span class="title">MY ORDERS</span>
+            		<span class="title">Sign In</span>
             	</div>
-	            <div class="col-lg-12 col-sm-12 hero-feature">
-                	<table class="table table-bordered tbl-cart">
-                        <thead>
+	            <div class="col-lg-6 col-sm-6 hero-feature">
+	            	<form action="/signin" enctype="multipart/form-data" method="post" role="form" id="form-signup">
+                    <table class="table table-bordered tbl-checkout">
+						<tbody>
                             <tr>
-                                <td>Product Name</td>
-                                <td>Size</td>
-                                <td>Color</td>
-                                <td class="td-qty">Quantity</td>
-                                <td>Unit Price</td>
-                                <td>Sub Total</td>
+								<td>Email Address</td>
+                                <td>
+                                    <input type="text" id="email" name="email" class="form-control" />
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody id="orders-content">
-                        	{% for x in products %}
-                            <tr>
-                                <td>{{ x["titulo"] }}</td>
-                                <td>M</td>
-                                <td>-</td>
-                                <td class="text-center">{{ x["unit"] }}</td>
-                                <td class="price">$ {{ x["stotal"] }}</td>
-                                <td>$ {{ x["stotal"] }}</td>
+                             <tr>
+								<td>Password</td>
+                                <td>
+                                    <input type="password" id="password" name="password" class="form-control" />
+                                </td>
                             </tr>
-                            {% end %}
-                        </tbody>
+						</tbody>
                     </table>
-                    <!--
 					<div class="btn-group btns-cart">
-						<button type="submit" class="btn btn-primary">Confirm Order</button>
+						<button type="submit" class="btn btn-primary">Sign In</button>
 					</div>
-                    -->
-
+					 {% raw xsrf_form_html() %}
+                   </form>
 	            </div>
         	</div>
         	<!-- End Cart -->
-
-
         </div>
 	</div>
 {% end %}

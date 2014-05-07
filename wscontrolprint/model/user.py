@@ -5,9 +5,15 @@ from basemodel  import BaseModel
 
 class User(BaseModel):
 	def __init__(self):
+		self._identifier=None
 		self._name=None
 		self._email=None
 		self._password=None
+
+	
+	@property
+	def identifier(self):
+		return self._identifier
 
 	@property
 	def name(self):
@@ -21,6 +27,10 @@ class User(BaseModel):
 	def password(self):
 		return self._password
 
+	@identifier.setter
+	def identifier(self,value):
+		self._identifier = value
+
 	@name.setter
 	def name(self,value):
 		self._name=value
@@ -33,25 +43,25 @@ class User(BaseModel):
 	def password(self,value):
 		self._password=value
 
-	def InitById(self,identifier,collection):
-		data = collection.find({"_id":ObjectId(identifier)})
+	def InitById(self,email,collection):
+		data = collection.find({"email":email})
 		if data.count() >= 1:
-			self.name = data[0]["username"]
+			self.identifier = data[0]["_id"]
+			self.name = data[0]["name"]
 			self.email = data[0]["email"]
 			self.password = data[0]["password"]
 
 	def Print(self):
 		try:
 			data = {
-				"name": self.username,
+				"identifier":self.identifier,
+				"name": self.name,
 				"email": self.email,
-				"password": self.password,
-				"_id":ObjectId(self.identifier),
-				
+				"password": self.password
 			}
 			return data
 		except Exception, e:
-			return self.ShowError("id: " + self.identifier + " not found")
+			return "id: " + self.email + " not found"
 
 	def Save(self,collection):
 		data = collection.find({"email" : self.email})

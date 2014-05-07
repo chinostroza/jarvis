@@ -11,9 +11,9 @@ class UserGetHandler(BaseHandler):
 		#validate access token
 		if not self.ValidateToken():
 			return
-		identifier = self.get_argument("identifier", "")
+		email = self.get_argument("email", "")
 		user=User()
-		user.InitById(identifier,self.db.users)
+		user.InitById(email,self.db.users)
 		self.write(json_util.dumps(user.Print()))
 
 

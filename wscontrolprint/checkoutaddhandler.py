@@ -25,6 +25,7 @@ class CheckoutAddHandler(BaseHandler):
 		checkout.country=self.get_argument("country","")
 		checkout.email=self.get_argument("email","")
 		checkout.cart=self.get_argument("cart","")
+		checkout.userid=self.get_argument("userid","")
 		oid=checkout.Save(self.db.checkouts)
 		self.write(oid)
 

@@ -162,7 +162,7 @@ class Checkout(BaseModel):
 		url +="&country="+ self.country
 		url +="&email="+ self.email
 		url +="&cart="+ self.cart
-		url +="&userid="+ self.userid
+		url +="&userid="+ str(self.userid)
 		return urllib.urlopen(url).read()
 
 
@@ -193,7 +193,7 @@ class Checkout(BaseModel):
 
 		url = self.wsurl() + "/checkout/get"
 		url += "?token=" + self.token()
-		url += "&userid=" + userid
+		url += "&userid=" + str(userid)
 		return urllib.urlopen(url).read()
 
 	def InitByUserId(self,userid):

@@ -12,9 +12,15 @@ from model.basemodel  import BaseModel
 class User(BaseModel):
 
 	def __init__(self):
+		self._identifier=None
 		self._name=None
 		self._email=None
 		self._password=None
+
+
+	@property
+	def identifier(self):
+		return self._identifier
 
 	@property
 	def name(self):
@@ -27,6 +33,10 @@ class User(BaseModel):
 	@property
 	def email(self):
 		return self._email
+
+	@identifier.setter
+	def identifier(self,value):
+		self._identifier=value
 
 	@name.setter
 	def name(self,value):
@@ -60,9 +70,9 @@ class User(BaseModel):
 		url += "&email=" + email
 		json_string = urllib.urlopen(url).read()
 		data = json_util.loads(json_string)
-		self.name=data["username"]
+		self.identifier=data["identifier"]
+		self.name=data["name"]
 		self.password=data["password"]
 		self.email=data["email"]
-		
 		return data
 

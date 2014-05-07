@@ -6,6 +6,8 @@ import tornado.ioloop
 import tornado.web
 from homehandler import HomeHandler
 from signuphandler import SignUpHandler
+from signinhandler import SignInHandler
+from signouthandler import SignOutHandler
 from carthandler import CartHandler
 from cartlisthandler import CartListHandler
 from cartaddhandler import CartAddHandler
@@ -22,7 +24,9 @@ from useraddhandler import UserAddHandler
 from usergethandler import UserGetHandler
 from globals import port
 from tornado.options import define,options
+
 define("port", default=port, help="run on the given port", type=int)
+
 class Application(tornado.web.Application):
 	def __init__(self):
 		settings = dict(
@@ -37,6 +41,8 @@ class Application(tornado.web.Application):
 		handlers=[
 			(r"/",HomeHandler),
 			(r"/signup",SignUpHandler),
+			(r"/signin",SignInHandler),
+			(r"/signout",SignOutHandler),
 			(r"/cart",CartHandler),
 			(r"/cart/list",CartListHandler),
 			(r"/cart/add",CartAddHandler),
