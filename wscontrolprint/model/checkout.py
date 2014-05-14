@@ -131,6 +131,10 @@ class Checkout(BaseModel):
 	def userid(self,value):
 		self._userid=value
 
+	def GetListByUserId(self,userid,collection):
+		data	= str(json_util.dumps(collection.find({"userid":userid})))
+		return data
+
 	def InitByUserId(self,userid,collection):
 		data = collection.find({"userid":userid})
 		if data.count() >= 1:
@@ -191,6 +195,7 @@ class Checkout(BaseModel):
 
 
 	def Save(self,collection):
+		'''
 		data = collection.find({"identifier" : self.identifier})
 		if data.count() >= 1:
 			collection.update(
@@ -212,6 +217,7 @@ class Checkout(BaseModel):
 					"userid": self.userid
 				}})
 			return str(data[0]["_id"])
+		'''
 		#save the object and return the id
 		object_id = collection.insert(
 			{

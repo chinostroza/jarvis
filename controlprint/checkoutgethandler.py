@@ -19,9 +19,11 @@ class CheckOutGetHandler(BaseHandler):
 		checkout=Checkout()
 		
 		if json == "True":
-			self.write(checkout.jsonInitByUserId(user["identifier"]))
+			self.write(checkout.getOrdersByUserId(str(user["identifier"])))
 		else:
-			jsonCheckOut=checkout.InitByUserId(str(user["identifier"]))
-			jsonCart = json_util.loads(jsonCheckOut["cart"])
-			myProducts=jsonCart["products"]
+			jsonCheckOut=checkout.getOrdersByUserId(str(user["identifier"]))
+			myProducts = []
+			for x in jsonCheckOut:
+				jsonCart = json_util.loads(x["cart"])
+				myProducts.append(jsonCart["products"])
 			self.render("checkout/get.html",products=myProducts)

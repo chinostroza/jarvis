@@ -85,7 +85,12 @@ Cart.prototype.save = function(){
 
 Cart.prototype.del = function(){
 	//del cart
-	this.db.del()
+	for(i=0;i<this.products.length;i++){
+		this.delProduct(i);
+	}
+
+	this.db.del();
+	
 }
 
 Cart.prototype.get = function(){
@@ -294,7 +299,8 @@ CheckOut.prototype.confirm = function () {
 		  data: param,
 		  success: function( data ) {
     			//TODO generar mensaje de retorno
-    			alert( "Compra de mentira OK" );
+    			alert( "Compra OK" );
+    			myCart.del();
     		}
 		});
 	
@@ -348,6 +354,9 @@ $( document ).ready(function() {
 
     			// update count cart items
 				myShoppingCartList.setCount(myCart.count())
+
+				//
+				alert( "Producto agregado al carro" );
 			});
     });
 });	

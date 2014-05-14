@@ -10,6 +10,7 @@ from cartaddhandler import CartAddHandler
 from cartgethandler import CartGetHandler
 from checkoutaddhandler import CheckoutAddHandler
 from checkoutgethandler import CheckoutGetHandler
+from checkoutlisthandler import CheckoutListHandler
 from designlisthandler import DesignListHandler
 from designaddhandler import DesignAddHandler
 from designgethandler import DesignGetHandler
@@ -38,6 +39,7 @@ class Application(tornado.web.Application):
 			(r"/cart/get",CartGetHandler),
 			(r"/checkout/add",CheckoutAddHandler),
 			(r"/checkout/get",CheckoutGetHandler),
+			(r"/checkout/list",CheckoutListHandler),
 			(r"/design/list",DesignListHandler),
 			(r"/design/add",DesignAddHandler),
 			(r"/design/get",DesignGetHandler),

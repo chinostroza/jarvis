@@ -156,8 +156,4 @@ if __name__ == '__main__':
 	myClass.addProperty()
 	myClass.addSetter()
 	outstr=myClass.generate()
-	myClassFile=FileGenerator()
-	path="/Users/chinostroza/jarvis/ReadClass.py"
-	myClassFile.createFile(path)
-	myClassFile.stringToFile(path,outstr)
-
+	print outstr

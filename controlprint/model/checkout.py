@@ -146,6 +146,13 @@ class Checkout(BaseModel):
 		self.identifier = data
 		return data
 
+	def getOrdersByUserId(self,identifier):
+
+		url = self.wsurl()+"/checkout/list?token="+ self.token() + "&identifier="+identifier
+		content = urllib2.urlopen(url).read()
+		data = json_util.loads(content)
+		return data
+
 	def Save(self):
 
 		url = self.wsurl()+"/checkout/add?token=" + self.token()
