@@ -445,28 +445,6 @@ class TornadoGenerator(object):
 		fileBaseHandler.stringToFile(pathfileGlobal,myBaseHandler.generate())
 
 	def genBaseHtml(self):
-		'''
-		page = markup.page( )
-		page.init( title=self.name, 
-					css=( "/static/lib/bootstrap-3.1.1-dist/css/bootstrap.min.css" ),
-					charset=("utf-8"), 
-					metainfo={"viewport":"width=device-width, initial-scale=1"},
-					doctype="<!DOCTYPE html>",
-					script=["/static/lib/jquery-1.11.0.min.js",
-							"/static/lib/bootstrap-3.1.1-dist/js/bootstrap.min.js"] )
-
-		page.add("{% block body %}{% end %}")
-		page.div(class_="container")
-		page.div(class_="row")
-		page.div.close()
-		page.div.close()
-
-		fileBaseHtml = FileGenerator()
-		pathfile = self.path+"templates/base.html"
-		fileBaseHtml.createDirectory(self.path+"templates")
-		fileBaseHtml.createFile(pathfile)
-		fileBaseHtml.stringToFile(pathfile,str(page))
-		'''
 		myBaseHtml = FileGenerator()
 		origen = os.path.join(os.path.dirname(__file__),"generator/default/templates/base.html")
 		destino=self.path+"templates/base.html"
@@ -508,27 +486,18 @@ if __name__ == '__main__':
 	
 
 	
-	checkoutAttrs=dict({
-		"identifier":"string",
-		"firstname":"string",
-		"lastname":"string",
-		"email":"email",
-		"telephone":"telephone",
-		"address":"string",
-		"city":"string",
-		"postcode":"string",
-		"country":"int",
-		"regionstate":"int",
-		"comment":"",
-		"formapago":"int"
+	userAttr=dict({
+		"name":"string",
+		"email":"string",
+		"password":"string"
 	})
 
-	checkoutEntity = Entity("Checkout",checkoutAttrs)
+	userEntity = Entity("User",userAttr)
 	listEntity=[]
-	listEntity.append(checkoutEntity)
+	listEntity.append(userEntity)
 	myTornado = TornadoGenerator()
 	myTornado.entitys=listEntity
 	myTornado.operators=["add"]
-	myTornado.path="/Users/chinostroza/codeWeb2Print/cart/"
-	myTornado.name="controlprint"
+	myTornado.path="/Users/chinostroza/gentornadogenerator/"
+	myTornado.name="tornadogenerator"
 	myTornado.generate()
