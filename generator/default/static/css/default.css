@@ -1,0 +1,25 @@
+body{
+   font-size: 13px;
+   font-family: "Roboto";
+   font-style: normal;
+   font-weight: 300;
+}
+
+body .navbar-default{
+	background-color: #fff;
+	border-color: #fff;
+}
+
+#marca{
+   font-weight: 400;
+   font-style: italic;
+   font-size: 24px;
+}
+
+.logo{
+	height: 50px;
+}
+
+.navfont{
+	font-weight: 500;
+}
