@@ -1,0 +1,46 @@
+body{
+   font-size: 13px;
+   font-family: "Roboto";
+   font-style: normal;
+   font-weight: 300;
+}
+
+body .navbar-default{
+	background-color: #fff;
+	border-color: #fff;
+}
+
+body .btn{
+   font-weight: 500;
+}
+
+body .btn-success{
+   background-color: #80bd01;
+}
+
+.hometitle{
+   font-weight: 100;
+   margin-top: 40px;
+   text-align: center;
+}
+.homesubtitle{
+   font-size: 18px;
+   margin-top: 0px;
+   text-align: center;
+   font-weight: 500;
+}
+
+body .navbar-nav.navbar-right:last-child {
+margin-right: 12px;
+margin-top: 9px;
+}
+
+.logo{
+	height: 50px;
+}
+
+.homebutton{
+   margin-top: 30px;
+   text-align: center;
+}
+
