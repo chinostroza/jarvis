@@ -32,48 +32,40 @@ class User(BaseModel):
 
 		return self._identifier
 
-
 	@property
 	def username(self):
 
 		return self._username
-
 
 	@property
 	def email(self):
 
 		return self._email
 
-
 	@property
 	def password(self):
 
 		return self._password
-
 
 	@property
 	def name(self):
 
 		return self._name
 
-
 	@identifier.setter
 	def identifier(self,value):
 
 		self._identifier = value
 
-
-	@username
+	@username.setter
 	def username(self,value):
 
 		self._username = value
-
 
 	@email.setter
 	def email(self,value):
 
 		self._email = value
-
 
 	@password.setter
 	def password(self,value):
