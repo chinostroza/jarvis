@@ -41,7 +41,7 @@ exports.findByRoute = function (req, res){
      			"code" : element.code,
      			"status":element.status,
      			"position":element.position,
-     			"app_confirmes":true
+     			"app_confirmed":true
      		}
 
      		outOrders.push(mOrder);
