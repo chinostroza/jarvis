@@ -56,7 +56,7 @@ test.route('/items')
 
 
 test.route('/items/order/:order_id')
-  .get(order_controller.findByOrder);
+  .get(item_controller.findByOrder);
 
 
 test.route('/order/:id')
