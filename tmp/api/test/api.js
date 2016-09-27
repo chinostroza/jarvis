@@ -52,6 +52,10 @@ test.route('/order/:id')
   .delete(order_controller.deleteOrder);
 
 
+test.route('/order/route/:route_id')
+  .get(order_controller.findOne);
+
+
 
 app.use('/api', test);
 
