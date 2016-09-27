@@ -1,0 +1,24 @@
+{
+	"name":"API nodejs_momgoose tasks",
+	"tasks":[
+			{
+				"name":"Task model API file generator",
+				"type":"model",
+				"template":"model.js",
+				"write":"tmp/api/test/models"
+			},
+			{
+				"name":"Task controller API generator",
+				"type":"controller",
+				"template":"controller.js",
+				"write":"tmp/api/test/controllers"
+			},
+			{
+				"name":"Task boot API generator",
+				"type":"boot",
+				"template":"api.js",
+				"write":"tmp/api/test"
+			}
+
+		]
+}
