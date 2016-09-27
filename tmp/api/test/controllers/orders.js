@@ -23,7 +23,7 @@ exports.findById = function(req, res) {
 };
 
 
-export.findByRoute = function (req, res){
+exports.findByRoute = function (req, res){
 	Order.find({ "route_id": req.params.route_id }, function (err, order) {
 	
 	if(err) return res.send(500, err.message);
