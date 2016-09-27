@@ -48,7 +48,12 @@ exports.findByRoute = function (req, res){
 
      	});
 
-		res.status(200).jsonp(outOrders);
+     	var ordersResponse = {
+     		"name":"test Orders",
+     		"orders":outOrders
+     	}
+
+		res.status(200).jsonp(ordersResponse);
 	});
 };
 
