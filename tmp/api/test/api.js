@@ -43,7 +43,8 @@ test.route('/orders')
   .post(order_controller.addOrder);
 
 
-
+test.route('/orders/route/:route_id')
+  .get(order_controller.findByRoute);
 
 
 test.route('/order/:id')
@@ -51,9 +52,6 @@ test.route('/order/:id')
   .put(order_controller.updateOrder)
   .delete(order_controller.deleteOrder);
 
-
-test.route('/order/route/:route_id')
-  .get(order_controller.findOne);
 
 
 

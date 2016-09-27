@@ -22,12 +22,13 @@ exports.findById = function(req, res) {
 	});
 };
 
-exports.findOne = function(req, res){
-	Order.findOne({ "route_id": req.params.route_id }, function (err, order) {
+
+export.findByRoute = function (req, res){
+	Order.find({ "route_id": req.params.route_id }, function (err, order) {
 	
 	if(err) return res.send(500, err.message);
 
-     console.log('GET /order/' + req.params.route_id);
+     console.log('GET /orders/route/' + req.params.route_id);
 		res.status(200).jsonp(order);
 	});
 };
