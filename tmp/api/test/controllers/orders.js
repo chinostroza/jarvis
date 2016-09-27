@@ -22,6 +22,16 @@ exports.findById = function(req, res) {
 	});
 };
 
+exports.findOne = function(req, res){
+	Order.findOne({ "route_id": req.params.route_id }, function (err, doc){
+	
+	if(err) return res.send(500, err.message);
+
+     console.log('GET /order/' + req.params.route_id);
+		res.status(200).jsonp(order);
+	});
+};
+
 //POST - Insert a new order in the DB
 exports.addOrder = function(req, res) {
 	console.log('POST');
