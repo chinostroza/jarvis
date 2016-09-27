@@ -14,7 +14,7 @@ exports.findAllOrders = function(req, res) {
 
 //GET - Return a Order with specified ID
 exports.findById = function(req, res) {
-	Order.findById(req.params.id, function(err, order) {
+	Order.findById(req.params.id, function (err, order) {
     if(err) return res.send(500, err.message);
 
     console.log('GET /order/' + req.params.id);
@@ -23,7 +23,7 @@ exports.findById = function(req, res) {
 };
 
 exports.findOne = function(req, res){
-	Order.findOne({ "route_id": req.params.route_id }, function (err, doc){
+	Order.findOne({ "route_id": req.params.route_id }, function (err, order) {
 	
 	if(err) return res.send(500, err.message);
 
