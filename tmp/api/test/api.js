@@ -20,8 +20,12 @@ app.use(methodOverride());
     
 var order_model = require('./models/order')(app, mongoose);
     
+var item_model = require('./models/item')(app, mongoose);
+    
     
 var order_controller = require('./controllers/orders');
+    
+var item_controller = require('./controllers/items');
     
 
 
@@ -46,12 +50,25 @@ test.route('/orders')
 test.route('/orders/route/:route_id')
   .get(order_controller.findByRoute);
 
+test.route('/items')
+  .get(item_controller.findAllItems)
+  .post(item_controller.addItem);
+
+
+
+
 
 test.route('/order/:id')
   .get(order_controller.findById)
   .put(order_controller.updateOrder)
   .delete(order_controller.deleteOrder);
 
+
+
+test.route('/item/:id')
+  .get(item_controller.findById)
+  .put(item_controller.updateItem)
+  .delete(item_controller.deleteItem);
 
 
 

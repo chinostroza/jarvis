@@ -109,14 +109,28 @@ var order={
 		  ]
 }
 
+var item={
+	name: "item",
+	schema:[ 
+			{"name":"id","type": "Number" },
+			{"name":"order_id","type": "Number" },
+			{"name":"code","type": "String" },
+			{"name":"title","type": "String" },
+			{"name":"quantity","type": "Number" },
+			{"name":"status","type": "Number" },
+			{"name":"created_ad","type": "Date" },
+			{"name":"updated_ad","type": "Date" }
+		  ]
+}
+
 template = {
 	"title":"API nodejs_mongoose",
 	"nameapp": "test",
 	"path" : "templates/api/nodejs_mongoose/",
-	"output_path": "tmp/api/test/",
+	"output_path": "tmp/api/test2/",
 	"dbname": "test",
 	"port":3003,
-	"entitys":[order]
+	"entitys":[order,item]
 };
 
 //TODO change a of 
