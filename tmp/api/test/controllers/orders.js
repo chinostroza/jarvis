@@ -26,28 +26,27 @@ exports.findById = function(req, res) {
 exports.findByRoute = function (req, res){
 	Order.find({ "route_id": req.params.route_id }, function (err, orders) {
 	
-	if(err) return res.send(500, err.message);
+		if(err) return res.send(500, err.message);
 
-     console.log('GET /orders/route/' + req.params.route_id);
+     	console.log('GET /orders/route/' + req.params.route_id);
 
-     outOrders = [];
+     	outOrders = [];
 
+     	orders.forEach(function(element,index,array){
 
-     orders.forEach(function(element,index,array){
+     		var mOrder = {
+     			"id":element.id,
+     			"route_id" : element.route_id,
+     			"order_id" : element.order_id,
+     			"code" : element.code,
+     			"status":element.status,
+     			"position":element.position,
+     			"app_confirmes":true
+     		}
 
-     	var mOrder = {
-     		"id":element.id,
-     		"route_id" : element.route_id,
-     		"order_id" : element.order_id,
-     		"code" : element.code,
-     		"status":element.status,
-     		"position":element.position,
-     		"app_confirmes":true
-     	}
-     	
-     	outOrders.push(mOrder);
+     		outOrders.push(mOrder);
 
-     };
+     	});
 
 		res.status(200).jsonp(orders);
 	});
