@@ -1,6 +1,11 @@
 var swig	= require('swig');
 var fs		= require('fs');
 
+
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 var Jarvis = function(template){
 
 	this.template = template;
@@ -38,9 +43,9 @@ Jarvis.prototype.createScripts = function(){
 
 				//write a file from string template
 				if (task.type == "controller"){
-					var outTmpFile = task.write +"/"+ entity.name + "s" + task.name_file +task.ext;
+					var outTmpFile = task.write +"/"+ capitalize(entity.name) + "s" + task.name_file +task.ext;
 				}else if (task.type == "model"){
-					var outTmpFile = task.write +"/"+ entity.name + task.name_file + task.ext;
+					var outTmpFile = task.write +"/"+ capitalize(entity.name) + task.name_file + task.ext;
 				}
 				//if directory exits
 				if (!fs.existsSync(task.write)){

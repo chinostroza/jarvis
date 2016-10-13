@@ -17,7 +17,7 @@ var producto = {
 		}
 	],
 	schema:[
-			{"name":"id"				,"type":"int"},
+			{"name":"id"				,"type":"int","isprimary":"1"},
 			{"name":"description"		,"type":"String"},
 			{"name":"code"				,"type":"String"},
 			{"name":"units"				,"type":"int"},

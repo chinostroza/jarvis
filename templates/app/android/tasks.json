@@ -13,7 +13,7 @@
 					"name":"Task Persistence Contract APP file Generator",
 					"type":"model",
 					"template":"EntidadPersistenceContract.java",
-					"name_file":"PersistenceContract.java",
+					"name_file":"PersistenceContract",
 					"write":"tmp/app/drivin2/source/local",
 					"ext":".java"
 				},
@@ -21,7 +21,15 @@
 					"name":"Task DbHelper APP File Generator",
 					"type":"model",
 					"template":"EntidadDbHelper.java",
-					"name_file":"DbHelper.java",
+					"name_file":"DbHelper",
+					"write":"tmp/app/drivin2/source/local",
+					"ext":".java"
+				},
+				{
+					"name":"Task Local Data Source APP file Generator",
+					"type":"model",
+					"template":"EntidadLocalDataSource.java",
+					"name_file":"LocalDataSource",
 					"write":"tmp/app/drivin2/source/local",
 					"ext":".java"
 				}
