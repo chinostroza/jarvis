@@ -1,5 +1,6 @@
 tmp/
-template/app/
+template/android/
+app.js
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
