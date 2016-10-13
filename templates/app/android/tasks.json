@@ -1,0 +1,29 @@
+{
+	"name":"ANDROID  tasks",
+	"tasks":[
+				{
+					"name":"Task model APP file Generator",
+					"type":"model",
+					"template":"model.java",
+					"name_file":".java",
+					"write":"tmp/app/drivin2/models",
+					"ext":".java"
+				},
+				{
+					"name":"Task Persistence Contract APP file Generator",
+					"type":"model",
+					"template":"EntidadPersistenceContract.java",
+					"name_file":"PersistenceContract.java",
+					"write":"tmp/app/drivin2/source/local",
+					"ext":".java"
+				},
+				{
+					"name":"Task DbHelper APP File Generator",
+					"type":"model",
+					"template":"EntidadDbHelper.java",
+					"name_file":"DbHelper.java",
+					"write":"tmp/app/drivin2/source/local",
+					"ext":".java"
+				}
+			]
+}

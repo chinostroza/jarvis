@@ -14,46 +14,11 @@ exports.findAllOrders = function(req, res) {
 
 //GET - Return a Order with specified ID
 exports.findById = function(req, res) {
-	Order.findById(req.params.id, function (err, order) {
+	Order.findById(req.params.id, function(err, order) {
     if(err) return res.send(500, err.message);
 
     console.log('GET /order/' + req.params.id);
 		res.status(200).jsonp(order);
-	});
-};
-
-
-exports.findByRoute = function (req, res){
-	Order.find({ "route_id": req.params.route_id }, function (err, orders) {
-	
-		if(err) return res.send(500, err.message);
-
-     	console.log('GET /orders/route/' + req.params.route_id);
-
-     	outOrders = [];
-
-     	orders.forEach(function(element,index,array){
-
-     		var mOrder = {
-     			"id":element.id,
-     			"route_id" : element.route_id,
-     			"order_id" : element.order_id,
-     			"code" : element.code,
-     			"status":element.status,
-     			"position":element.position,
-     			"app_confirmed":true
-     		}
-
-     		outOrders.push(mOrder);
-
-     	});
-
-     	var ordersResponse = {
-     		"name":"test Orders",
-     		"orders":outOrders
-     	}
-
-		res.status(200).jsonp(ordersResponse);
 	});
 };
 

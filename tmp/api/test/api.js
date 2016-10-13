@@ -47,16 +47,13 @@ test.route('/orders')
   .post(order_controller.addOrder);
 
 
-test.route('/orders/route/:route_id')
-  .get(order_controller.findByRoute);
 
 test.route('/items')
   .get(item_controller.findAllItems)
   .post(item_controller.addItem);
 
 
-test.route('/items/order/:order_id')
-  .get(item_controller.findByOrder);
+
 
 
 test.route('/order/:id')

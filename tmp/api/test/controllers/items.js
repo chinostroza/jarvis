@@ -21,38 +21,6 @@ exports.findById = function(req, res) {
 		res.status(200).jsonp(item);
 	});
 };
-exports.findByOrder = function (req, res){
-	Item.find({ "item_id": req.params.item_id }, function (err, items) {
-	
-		if(err) return res.send(500, err.message);
-
-     	console.log('GET /items/order/' + req.params.order_id);
-
-     	outItems = [];
-
-     	items.forEach(function(element,index,array){
-
-     		var mItem = {
-     			"id":element.id,
-     			"order_id" : element.order_id,
-     			"code" : element.code,
-     			"title" : element.title,
-     			"quantity":element.quantity,
-     			"status":element.status
-     		}
-
-     		outItems.push(mItem);
-
-     	});
-
-     	var itemsResponse = {
-     		"name":"test Items",
-     		"items":outItems
-     	}
-
-		res.status(200).jsonp(itemsResponse);
-	});
-};
 
 //POST - Insert a new item in the DB
 exports.addItem = function(req, res) {

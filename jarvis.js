@@ -1,14 +1,14 @@
 var swig	= require('swig');
 var fs		= require('fs');
-var util	= require('./lib/util.js');
-
-
-
 
 var Jarvis = function(template){
 
 	this.template = template;
 };
+
+Jarvis.prototype.parser = function(code){
+	console.log(JSON.stringify(esprima.parse(code), null, 4));
+}
 
 Jarvis.prototype.createScripts = function(){
 
@@ -29,21 +29,24 @@ Jarvis.prototype.createScripts = function(){
 				//generate a string from template
 				var outString = swig.renderFile(pathTemplate ,{
 					"entidad"	: entity.name,
-					"campos"	: entity.cols,
+					"cols"	: entity.cols,
 					"schema"	: entity.schema
 				});
 
+				//parser file
+				//console.log(JSON.stringify(esprima.parse(outString), null, 4));
+
 				//write a file from string template
 				if (task.type == "controller"){
-					var outTmpFile = task.write +"/"+ entity.name + "s.js"
+					var outTmpFile = task.write +"/"+ entity.name + "s" + task.name_file +task.ext;
 				}else if (task.type == "model"){
-					var outTmpFile = task.write +"/"+ entity.name + ".js"
+					var outTmpFile = task.write +"/"+ entity.name + task.name_file + task.ext;
 				}
 				//if directory exits
 				if (!fs.existsSync(task.write)){
 	    			fs.mkdirSync(task.write);
 				}
-				
+
 				//write file
 				fs.writeFile(outTmpFile, outString , function(err) {
 		    		if(err) {
@@ -52,7 +55,7 @@ Jarvis.prototype.createScripts = function(){
 
 	    			console.log(task.name + " ok!");
 				});//end write file
-			
+
 			});//end entitys.forEach()
 		}else if (task.type == "boot"){
 			var controllers = [];
@@ -81,11 +84,12 @@ Jarvis.prototype.createScripts = function(){
 
 			//write file
 			fs.writeFile(outTmpFile, outString , function(err) {
+
 		    	if(err) {
 		        	return console.log(err);
 		    	}
 
-	    		console.log(task.name + " ok!");
+	    		console.log(task.name + " ok! file :" + outTmpFile);
 			});//end write file
 		}//end if(task.type)
 	});//end tasks.forEach()
@@ -95,46 +99,4 @@ Jarvis.prototype.go = function(){
 	this.createScripts();
 }
 
-var order={
-	name: "order",
-	schema:[ 
-			{"name":"id","type": "Number" },
-			{"name":"route_id","type": "Number" },
-			{"name":"order_id","type": "Number" },
-			{"name":"code","type": "String" },
-			{"name":"status","type": "Number" },
-			{"name":"position","type": "Number" },
-			{"name":"created_ad","type": "Date" },
-			{"name":"updated_ad","type": "Date" }
-		  ]
-}
-
-var item={
-	name: "item",
-	schema:[ 
-			{"name":"id","type": "Number" },
-			{"name":"order_id","type": "Number" },
-			{"name":"code","type": "String" },
-			{"name":"title","type": "String" },
-			{"name":"quantity","type": "Number" },
-			{"name":"status","type": "Number" },
-			{"name":"created_ad","type": "Date" },
-			{"name":"updated_ad","type": "Date" }
-		  ]
-}
-
-template = {
-	"title":"API nodejs_mongoose",
-	"nameapp": "test",
-	"path" : "templates/api/nodejs_mongoose/",
-	"output_path": "tmp/api/test2/",
-	"dbname": "test",
-	"port":3003,
-	"entitys":[order,item]
-};
-
-//TODO change a of 
-
-mJarvis = new Jarvis(template);
-
-mJarvis.go();
+module.exports = Jarvis;

@@ -1,0 +1,335 @@
+{
+    "route": {
+        "id": 18339,
+        "result_summary_id": 2364,
+        "vehicle_has_detail_id": 8241,
+        "cluster": 4,
+        "total_items": 5,
+        "total_orders": 5,
+        "total_addresses": 5,
+        "total_distance": 45509,
+        "total_time": 358,
+        "start_time": "2000-01-01T08:30:00.000Z",
+        "load_factor_1": 90,
+        "load_factor_2": 0,
+        "load_factor_3": 0,
+        "beetrack_route_id": null,
+        "beetrack_status": null,
+        "code": "A14-Hinostroza",
+        "addresses": [
+            {
+                "type": "deposit",
+                "id": 10162487,
+                "code": null,
+                "address_1": "71",
+                "address_2": null,
+                "lat": -33.3356266,
+                "lng": -70.719827,
+                "name": "Otero",
+                "reload_time": 0,
+                "position": 0,
+                "delivery_time": 946715400000,
+                "delivery_time_human": "08:30:00"
+            },
+            {
+                "type": "address",
+                "id": 10162502,
+                "code": null,
+                "address_1": "SAN FRANCISCO 2672",
+                "address_2": null,
+                "lat": -33.4799435,
+                "lng": -70.6435768,
+                "name": null,
+                "time_window_start": 946715400000,
+                "time_window_start_human": "08:30:00",
+                "time_window_end": 946737000000,
+                "time_window_end_human": "14:30:00",
+                "orders_count": 1,
+                "units_1": 1,
+                "units_2": 0,
+                "units_3": 0,
+                "results": [
+                    {
+                        "id": 288136,
+                        "position": 1,
+                        "delivery_time": 946716540000,
+                        "delivery_time_human": "08:49:00",
+                        "order": {
+                            "id": 1658964,
+                            "code": "4862262",
+                            "units_1": 1,
+                            "units_2": 0,
+                            "units_3": 0,
+                            "service_time": 60,
+                            "items": [
+                                {
+                                    "id": 77,
+                                    "description": "Item 76",
+                                    "code": "I76",
+                                    "units": 14,
+                                    "delivered_units": null,
+                                    "units_1": 1,
+                                    "units_2": 0,
+                                    "units_3": 0
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "position": 1,
+                "delivery_time": 946716540000,
+                "delivery_time_human": "08:49:00"
+            },
+            {
+                "type": "address",
+                "id": 10162503,
+                "code": "CATEDRAL 4235",
+                "address_1": "CATEDRAL 4235",
+                "address_2": "ACEROS TALCA",
+                "lat": -33.4674204,
+                "lng": -70.6295582,
+                "name": null,
+                "time_window_start": 946715400000,
+                "time_window_start_human": "08:30:00",
+                "time_window_end": 946737000000,
+                "time_window_end_human": "14:30:00",
+                "orders_count": 1,
+                "units_1": 4,
+                "units_2": 0,
+                "units_3": 0,
+                "results": [
+                    {
+                        "id": 288137,
+                        "position": 2,
+                        "delivery_time": 946720500000,
+                        "delivery_time_human": "09:55:00",
+                        "order": {
+                            "id": 1658965,
+                            "code": "4863534",
+                            "units_1": 4,
+                            "units_2": 0,
+                            "units_3": 0,
+                            "service_time": 60,
+                            "items": [
+                                {
+                                    "id": 78,
+                                    "description": "Item 77",
+                                    "code": "I77",
+                                    "units": 16,
+                                    "delivered_units": null,
+                                    "units_1": 1,
+                                    "units_2": 0,
+                                    "units_3": 0
+                                },
+                                {
+                                    "id": 79,
+                                    "description": "Item 78",
+                                    "code": "I78",
+                                    "units": 2,
+                                    "delivered_units": null,
+                                    "units_1": 1,
+                                    "units_2": 0,
+                                    "units_3": 0
+                                },
+                                {
+                                    "id": 80,
+                                    "description": "Item 79",
+                                    "code": "I79",
+                                    "units": 4,
+                                    "delivered_units": null,
+                                    "units_1": 1,
+                                    "units_2": 0,
+                                    "units_3": 0
+                                },
+                                {
+                                    "id": 81,
+                                    "description": "Item 80",
+                                    "code": "I80",
+                                    "units": 11,
+                                    "delivered_units": null,
+                                    "units_1": 1,
+                                    "units_2": 0,
+                                    "units_3": 0
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "position": 2,
+                "delivery_time": 946720500000,
+                "delivery_time_human": "09:55:00"
+            },
+            {
+                "type": "address",
+                "id": 10162504,
+                "code": null,
+                "address_1": "Franklin 1341",
+                "address_2": null,
+                "lat": -33.4378305,
+                "lng": -70.6504492,
+                "name": null,
+                "time_window_start": 946715400000,
+                "time_window_start_human": "08:30:00",
+                "time_window_end": 946737000000,
+                "time_window_end_human": "14:30:00",
+                "orders_count": 1,
+                "units_1": 2,
+                "units_2": 0,
+                "units_3": 0,
+                "results": [
+                    {
+                        "id": 288138,
+                        "position": 3,
+                        "delivery_time": 946724640000,
+                        "delivery_time_human": "11:04:00",
+                        "order": {
+                            "id": 1658966,
+                            "code": "4863411",
+                            "units_1": 2,
+                            "units_2": 0,
+                            "units_3": 0,
+                            "service_time": 60,
+                            "items": [
+                                {
+                                    "id": 82,
+                                    "description": "Item 81",
+                                    "code": "I81",
+                                    "units": 17,
+                                    "delivered_units": null,
+                                    "units_1": 1,
+                                    "units_2": 0,
+                                    "units_3": 0
+                                },
+                                {
+                                    "id": 83,
+                                    "description": "Item 82",
+                                    "code": "I82",
+                                    "units": 16,
+                                    "delivered_units": null,
+                                    "units_1": 1,
+                                    "units_2": 0,
+                                    "units_3": 0
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "position": 3,
+                "delivery_time": 946724640000,
+                "delivery_time_human": "11:04:00"
+            },
+            {
+                "type": "address",
+                "id": 10162505,
+                "code": null,
+                "address_1": "Ureta Cox 648",
+                "address_2": null,
+                "lat": -33.4378305,
+                "lng": -70.6504492,
+                "name": null,
+                "time_window_start": 946715400000,
+                "time_window_start_human": "08:30:00",
+                "time_window_end": 946737000000,
+                "time_window_end_human": "14:30:00",
+                "orders_count": 1,
+                "units_1": 1,
+                "units_2": 0,
+                "units_3": 0,
+                "results": [
+                    {
+                        "id": 288139,
+                        "position": 4,
+                        "delivery_time": 946728300000,
+                        "delivery_time_human": "12:05:00",
+                        "order": {
+                            "id": 1658967,
+                            "code": "4861638",
+                            "units_1": 1,
+                            "units_2": 0,
+                            "units_3": 0,
+                            "service_time": 60,
+                            "items": [
+                                {
+                                    "id": 84,
+                                    "description": "Item 83",
+                                    "code": "I83",
+                                    "units": 6,
+                                    "delivered_units": null,
+                                    "units_1": 1,
+                                    "units_2": 0,
+                                    "units_3": 0
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "position": 4,
+                "delivery_time": 946728300000,
+                "delivery_time_human": "12:05:00"
+            },
+            {
+                "type": "address",
+                "id": 10162506,
+                "code": null,
+                "address_1": "AVDA. EL SALTO   1735",
+                "address_2": null,
+                "lat": -33.410952,
+                "lng": -70.6366546,
+                "name": null,
+                "time_window_start": 946715400000,
+                "time_window_start_human": "08:30:00",
+                "time_window_end": 946737000000,
+                "time_window_end_human": "14:30:00",
+                "orders_count": 1,
+                "units_1": 1,
+                "units_2": 0,
+                "units_3": 0,
+                "results": [
+                    {
+                        "id": 288140,
+                        "position": 5,
+                        "delivery_time": 946732260000,
+                        "delivery_time_human": "13:11:00",
+                        "order": {
+                            "id": 1658968,
+                            "code": "4863607",
+                            "units_1": 1,
+                            "units_2": 0,
+                            "units_3": 0,
+                            "service_time": 60,
+                            "items": [
+                                {
+                                    "id": 85,
+                                    "description": "Item 84",
+                                    "code": "I84",
+                                    "units": 13,
+                                    "delivered_units": null,
+                                    "units_1": 1,
+                                    "units_2": 0,
+                                    "units_3": 0
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "position": 5,
+                "delivery_time": 946732260000,
+                "delivery_time_human": "13:11:00"
+            },
+            {
+                "type": "deposit",
+                "id": 10162487,
+                "code": null,
+                "address_1": "71",
+                "address_2": null,
+                "lat": -33.3356266,
+                "lng": -70.719827,
+                "name": "Otero",
+                "reload_time": 0,
+                "position": 6,
+                "delivery_time": 946736880000,
+                "delivery_time_human": "14:28:00"
+            }
+        ]
+    }
+}
