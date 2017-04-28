@@ -6,12 +6,6 @@
 				"type":"model",
 				"template":"model.php",
 				"write":"tmp/web/test/models"
-			},
-			{
-				"name":"Task model CHICOCO file generator",
-				"type":"controller",
-				"template":"controller.php",
-				"write":"tmp/web/test/controllers"
 			}
 
 		]

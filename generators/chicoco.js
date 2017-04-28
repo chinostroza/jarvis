@@ -1,5 +1,5 @@
 //call Jarvis lib
-var Jarvis	= require('./jarvis.js');
+var Jarvis	= require('./jarvis2.js');
 
 
 //TODO: agrupar las entidades en un unico objeto
