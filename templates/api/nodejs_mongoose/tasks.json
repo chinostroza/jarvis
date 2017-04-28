@@ -5,21 +5,21 @@
 				"name":"Task model API file generator",
 				"type":"model",
 				"template":"model.js",
-				"write":"tmp/api/recuerdos/models",
+				"write":"tmp/api/allisbox/models",
 				"ext":".js"
 			},
 			{
 				"name":"Task controller API generator",
 				"type":"controller",
 				"template":"controller.js",
-				"write":"tmp/api/recuerdos/controllers",
+				"write":"tmp/api/allisbox/controllers",
 				"ext":".js"
 			},
 			{
 				"name":"Task boot API generator",
 				"type":"boot",
 				"template":"api.js",
-				"write":"tmp/api/recuerdos",
+				"write":"tmp/api/allisbox",
 				"ext":".js"
 			}
 

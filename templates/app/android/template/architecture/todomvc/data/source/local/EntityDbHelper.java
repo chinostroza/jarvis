@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class {{ entidad|capitalize }}DbHelper extends SQLiteOpenHelper {
+public class {{ entidad|capitalize }}sDbHelper extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION = 1;
 
@@ -23,7 +23,7 @@ public class {{ entidad|capitalize }}DbHelper extends SQLiteOpenHelper {
                     {% spaceless %}
                     {% for  campo in schema %}
                     {% if loop.first %}
-                      {{ entidad|capitalize }}PersistenceContract.{{ entidad|capitalize }}Entry._ID + TEXT_TYPE + " PRIMARY KEY," +
+                      {{ entidad|capitalize }}sPersistenceContract.{{ entidad|capitalize }}Entry._ID + TEXT_TYPE + " PRIMARY KEY," +
                     {% else %}
                     {% if campo.type=="int"%}
                     {{ entidad|capitalize }}sPersistenceContract.{{ entidad|capitalize }}Entry.COLUMN_NAME_{{campo.name|upper}} + INTEGER_TYPE + COMMA_SEP +

@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 
 import com.inzpiral.drivin.app.model.{{ entidad | capitalize }};
-import com.inzpiral.drivin.app.model.{{ entidad | capitalize }}sDataSource;
+import com.inzpiral.drivin.app.model.source.{{ entidad | capitalize }}sDataSource;
 import com.inzpiral.drivin.app.model.source.local.{{ entidad | capitalize }}sPersistenceContract.{{ entidad | capitalize }}Entry;
 import com.inzpiral.drivin.app.model.source.{{ entidad | capitalize }}sDataSource;
 
@@ -36,17 +36,17 @@ public class {{ entidad | capitalize }}sLocalDataSource implements {{ entidad | 
 
     public static {{ entidad | capitalize }}sLocalDataSource getInstance(@NonNull Context context) {
         if (INSTANCE == null) {
-            INSTANCE = new TasksLocalDataSource(context);
+            INSTANCE = new {{ entidad|capitalize }}sLocalDataSource(context);
         }
         return INSTANCE;
     }
 
     /**
-     * Note: {@link LoadTasksCallback#onDataNotAvailable()} is fired if the database doesn't exist
+     * Note: {@link Load{{ entidad|capitalize }}sCallBack#onDataNotAvailable()} is fired if the database doesn't exist
      * or the table is empty.
      */
     @Override
-    public void get{{ entidad | capitalize }}s(@NonNull Load{{ entidad | capitalize }}sCallback callback) {
+    public void get{{ entidad | capitalize }}s(@NonNull Load{{ entidad | capitalize }}sCallBack callback) {
         List<{{ entidad | capitalize }}> {{ entidad }}s = new ArrayList<{{ entidad | capitalize }}>();
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
@@ -57,12 +57,12 @@ public class {{ entidad | capitalize }}sLocalDataSource implements {{ entidad | 
         };
 
         Cursor c = db.query(
-                {{ entidad }}Entry.TABLE_NAME, projection, null, null, null, null, null);
+                {{ entidad|capitalize }}Entry.TABLE_NAME, projection, null, null, null, null, null);
 
         if (c != null && c.getCount() > 0) {
             while (c.moveToNext()) {
                 {% for  campo in schema %}
-                {{ campo.type }} {{ campo.name }} = c.getString(c.getColumnIndexOrThrow({{ entidad|capitalize }}Entry.COLUMN_NAME_{{ campo.name|upper }}));
+                {{ campo.type }} {{ campo.name }} = c.get{{ campo.type|capitalize }}(c.getColumnIndexOrThrow({{ entidad|capitalize }}Entry.COLUMN_NAME_{{ campo.name|upper }}));
                 {% endfor %}
                 {{entidad|capitalize}} {{entidad}} = new {{entidad|capitalize}}(
                 {% for  campo in schema %}
@@ -88,20 +88,20 @@ public class {{ entidad | capitalize }}sLocalDataSource implements {{ entidad | 
     }
 
     /**
-     * Note: {@link GetTaskCallback#onDataNotAvailable()} is fired if the {@link Task} isn't
+     * Note: {@link Get{{ entidad|capitalize }}CallBack#onDataNotAvailable()} is fired if the {@link {{ entidad|capitalize }}} isn't
      * found.
      */
     @Override
-    public void get{{entidad|capitalize}}(@NonNull String {{entidad}}Id, @NonNull GetTaskCallback callback) {
+    public void get{{entidad|capitalize}}(@NonNull String {{entidad}}Id, @NonNull Get{{entidad|capitalize}}CallBack callback) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         String[] projection = {
                 {% for  campo in schema %}
-                {{entidad|capitalize}}Entry.COLUMN_NAME_{{entidad|upper}},
+                {{entidad|capitalize}}Entry.COLUMN_NAME_{{campo.name|upper}},
                 {% endfor %}
         };
 
-        String selection = {{entidad|capitalize}}Entry.COLUMN_NAME_ENTRY_ID + " LIKE ?";
+        String selection = {{entidad|capitalize}}Entry.COLUMN_NAME_ID + " LIKE ?";
         String[] selectionArgs = { {{ entidad }}Id };
 
         Cursor c = db.query(
@@ -112,12 +112,10 @@ public class {{ entidad | capitalize }}sLocalDataSource implements {{ entidad | 
         if (c != null && c.getCount() > 0) {
             c.moveToFirst();
             {% for  campo in schema %}
-            String itemId = c.getString(c.getColumnIndexOrThrow(TaskEntry.COLUMN_NAME_ENTRY_ID));
-            {{ campo.type }} {{ campo.name }} = c.getString(c.getColumnIndexOrThrow({{entidad|capitalize}}Entry.COLUMN_NAME_{{campo.name|upper}}));
+            {{ campo.type }} {{ campo.name }} = c.get{{ campo.type|capitalize }}(c.getColumnIndexOrThrow({{ entidad|capitalize }}Entry.COLUMN_NAME_{{campo.name|upper}}));
             {% endfor %}
-            task = new Task(title, description, itemId, completed);
             {{entidad }} = new {{entidad|capitalize}}(
-            {% for  campo in schema %}{{ campo.name }}{% endfor %},
+            {% for  campo in schema %}{{ campo.name }}, {% endfor %}
             );
         }
         if (c != null) {

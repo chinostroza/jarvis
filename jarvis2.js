@@ -6,13 +6,9 @@ function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-var Jarvis = function(entitys,tasks){
+var Jarvis = function(template){
 
-  this.entitys = entitys;
-  this.tasks = tasks.tasks;
-  console.log(this.tasks);
-
-
+	this.template = template;
 };
 
 Jarvis.prototype.parser = function(code){
@@ -22,38 +18,25 @@ Jarvis.prototype.parser = function(code){
 Jarvis.prototype.createScripts = function(){
 
 	//read project.json task
-	//var tasks = (JSON.parse(fs.readFileSync(this.template.path + "tasks.json", 'utf8'))).tasks;
-  var tasks = this.tasks;
+	var tasks = (JSON.parse(fs.readFileSync(this.template.path + "tasks.json", 'utf8'))).tasks;
 	//read entitys
-	var entitys = this.entitys;
-
-  console.log("J A R V I S > G O  G E N E R A T O R <");
-  console.log("J A R V I S > T E M P L A T E S:");
+	var entitys = this.template.entitys
 
 	tasks.forEach(function(task, index, array){
 
 		//path templete file
-		var pathTemplate = task["template"];
-
-
-    console.log("J A R V I S > "+pathTemplate);
+		var pathTemplate = this.template.path + "template/" + task["template"];
 
 		if (task.type != "boot"){
-
 
 			entitys.forEach(function(entity,index,array){
 
 				//generate a string from template
-        if (task.type != "api_android"){
-          var outString = swig.renderFile(pathTemplate ,{
-            "entidad"	: entity.name,
-            "cols"	: entity.cols,
-            "schema"	: entity.schema
-          });
-        }else if (task.type == "api_android"){
-          console.log(pathTemplate);
-          var outString = swig.renderFile(pathTemplate ,entity);
-        }
+				var outString = swig.renderFile(pathTemplate ,{
+					"entidad"	: entity.name,
+					"cols"	: entity.cols,
+					"schema"	: entity.schema
+				});
 
 				//parser file
 				//console.log(JSON.stringify(esprima.parse(outString), null, 4));
@@ -63,9 +46,7 @@ Jarvis.prototype.createScripts = function(){
 					var outTmpFile = task.write +"/"+ capitalize(entity.name) + "s" + task.name_file +task.ext;
 				}else if (task.type == "model"){
 					var outTmpFile = task.write +"/"+ capitalize(entity.name) + task.name_file + task.ext;
-				}else if (task.type == "api_android"){
-          var outTmpFile = task.write +"/"+ capitalize(entity.name) + "s"+ task.name_file + task.ext;
-        }
+				}
 				//if directory exits
 				if (!fs.existsSync(task.write)){
 	    			fs.mkdirSync(task.write);

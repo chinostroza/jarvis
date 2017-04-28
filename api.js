@@ -1,14 +1,5 @@
 //call Jarvis lib
-var Jarvis	= require('./jarvis.js');
-
-var hashtag={
-	name:"hashtag",
-	schema:[
-		{"name":"id","type":"Number"},
-		{"name":"text","type":"String"},
-		{"name":"date","type":"String"}
-	]
-}
+var Jarvis	= require('./jarvis2.js');
 
 var user = {
 	name:"user",
@@ -21,16 +12,15 @@ var user = {
 	]
 }
 
-var photo = {
-	name:"photo",
+var box = {
+	name:"box",
 	schema:[
 		{"name":"id","type":"Number"},
-		{"name":"hashtag_id","type":"Number"},
 		{"name":"height","type":"Number"},
 		{"name":"width","type":"Number"},
-		{"name":"rgb_red","type":"Number"},
-		{"name":"rgb_green","type":"Number"},
-		{"name":"rgb_blue","type":"Number"}
+		{"name":"x","type":"Number"},
+		{"name":"y","type":"Number"},
+		{"name":"z","type":"Number"}
 	]
 }
 
@@ -38,12 +28,12 @@ var photo = {
 
 template = {
 	"title":"API nodejs_mongoose",
-	"nameapp": "recuerdos",
+	"nameapp": "allisbox",
 	"path" : "templates/api/nodejs_mongoose/",
-	"output_path": "tmp/api/recuerdos/",
-	"dbname": "recuerdos",
-	"port":8080,
-	"entitys":[hashtag,user,photo]
+	"output_path": "tmp/api/allisbox/",
+	"dbname": "allisbox",
+	"port":3002,
+	"entitys":[user,box]
 };
 
 //TODO change a of

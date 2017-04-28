@@ -1,8 +1,6 @@
-//call Jarvis lib
-var Jarvis	= require('./jarvis.js');
 
-var producto = {
-	name :"producto",
+var item = {
+	name :"item",
 	method:[
 		{ "name":"acceptProducto",
 		  "type":"update",
@@ -38,25 +36,26 @@ var orden = {
 		{"name":"units_2"		,"type":"int"},
 		{"name":"units_3"		,"type":"int"},
 		{"name":"service_time"	,"type":"int"},
-		{"name":"status_id","type":"int"},
-		{"name":"productos"		,"type":"ArrayList","childname":"producto"}
+		{"name":"reason_id","type":"int"},
+		{"name":"order_status_id","type":"int"},
+		{"name":"items"		,"type":"ArrayList","childname":"item"}
 	]
 
 }
 
-var resultado={
-	name:"resultado",
+var result={
+	name:"result",
 	schema:[
 		{"name":"id"					,"type":"String"},
 		{"name":"position"				,"type":"int"},
 		{"name":"delivery_time"			,"type":"int"},
 		{"name":"delivery_time_human"	,"type":"String"},
-		{"name":"orden"					,"type":"Object","childname":"orden"}
+		{"name":"order"					,"type":"Object","childname":"order"}
 	]
 }
 
-var lugar={
-	name:"lugar",
+var address={
+	name:"address",
 	schema:[
 			{"name":"type"			,"type":"String"},
 			{"name":"id"			,"type":"int"},
@@ -69,12 +68,20 @@ var lugar={
 			{"name":"reload_time"	,"type":"int"},
 			{"name":"position"		,"type":"int"},
 			{"name":"delivery_time"	,"type":"int"},
-			{"name":"resultados"	,"type":"ArrayList", "childname":"resultado"}
+			{"name":"results"	,"type":"ArrayList", "childname":"result"}
 		]
 }
 
-var ruta={
-	name: "ruta",
+var reason={
+	name :"reason",
+	schema:[
+		{"name":"id","type":"int"},
+		{"name":"description","type":"String"}
+	]
+}
+
+var route={
+	name: "route",
 	schema:[
 			{"name":"id","type": "int"},
 			{"name":"description","type":"String"},
@@ -93,14 +100,50 @@ var ruta={
 			{"name":"beetrack_route_id","type": "int" },
 			{"name":"beetrack_status","type": "int" },
 			{"name":"code","type": "String" },
-			{"name":"lugares","type": "ArrayList","childname": "lugar"}
+			{"name":"addresses","type": "ArrayList","childname": "address"}
 		  ]
 }
 
 
-var escenario = {
-	name:"escenario",
-	schema : [
+var scenarios = {
+	"name":"scenario",
+  "request":{
+    "params":[
+      {"name":"organization_id","type":"int"}
+    ],
+    "body":{},
+    "url":"",
+    "method":""
+  },
+  "response":{
+    "scenarios": [
+      {
+        "id": 6343,
+        "scenario_state_id": 12,
+        "token": "b3b132af-f859-499e-80fc-6d8228c7f673",
+        "schema_id": 83,
+        "deposit_id": 94,
+        "description": "Otero Items",
+        "start_time": "2000-01-01T08:30:00.000Z",
+        "end_time": "2000-01-01T14:30:00.000Z",
+        "deploy_date": "2017-10-06",
+        "return_trip": true,
+        "multiple_trips": false,
+        "reload_time": 0,
+        "service_time": 10,
+        "message": "Start|End",
+        "fleet_name": "Driv.in",
+        "percentage": "98.0",
+        "reoptimization": 0,
+        "grouped": true,
+        "is_simulation": null,
+        "active": true,
+        "created_at": "2016-10-05T18:26:29.000Z",
+        "updated_at": "2016-10-05T18:27:43.000Z"
+        }
+    ]
+  },
+	"schema" : [
 				{"name":"id","type":"int"},
 				{"name":"scenario_state_id","type":"int"},
 				{"name":"token","type":"String"},
@@ -125,20 +168,34 @@ var escenario = {
 				{"name":"updated_at","type":"String"}
 	]
 }
-/*
-ruta by vehicul
-orden by rutaid
-*/
-template = {
-	"title":"APP android model",
-	"nameapp": "test",
-	"path" : "templates/app/android/",
-	"output_path": "tmp/app/drivin2/",
-	"dbname": "test",
-	"port":3003,
-	"entitys":[ruta,lugar,resultado,orden,producto,escenario]
-};
 
-mJarvis = new Jarvis(template);
+var tasks ={
+  	"name":"ANDROID  tasks",
+  	"tasks":[
+			/*
+  				{
+  					"name":"Task Api android APP file Generator",
+  					"type":"api_android",
+  					"template":"EntityApi.java",
+  					"name_file":"Api",
+  					"write":"tmp/",
+  					"ext":".java"
+  				},*/
+          {
+            "name":"Task Model Parcelable android APP file Generator",
+            "type":"model",
+            "template":"Entity.java",
+            "name_file":"",
+            "write":"tmp/",
+            "ext":".java"
+          }
+  			]
+  };
+
+var Jarvis	= require('./jarvis.js');
+
+
+
+mJarvis = new Jarvis([reason],tasks);
 
 mJarvis.go();

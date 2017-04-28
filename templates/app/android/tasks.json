@@ -4,33 +4,65 @@
 				{
 					"name":"Task model APP file Generator",
 					"type":"model",
-					"template":"model.java",
-					"name_file":".java",
-					"write":"tmp/app/drivin2/models",
+					"template":"architecture/todomvc/data/Entity.java",
+					"name_file":"",
+					"write":"tmp/app/drivin2/data/",
+					"ext":".java"
+				},
+				{
+					"name":"Task EntityAPI APP file Generator",
+					"type":"model",
+					"template":"EntityAPI.java",
+					"name_file":"",
+					"write":"tmp/app/drivin2/data/",
 					"ext":".java"
 				},
 				{
 					"name":"Task Persistence Contract APP file Generator",
 					"type":"model",
-					"template":"EntidadPersistenceContract.java",
+					"template":"architecture/todomvc/data/source/local/EntityPersistenceContract.java",
 					"name_file":"PersistenceContract",
-					"write":"tmp/app/drivin2/source/local",
+					"write":"tmp/app/drivin2/data/source/local",
 					"ext":".java"
 				},
 				{
 					"name":"Task DbHelper APP File Generator",
 					"type":"model",
-					"template":"EntidadDbHelper.java",
+					"template":"architecture/todomvc/data/source/local/EntityDbHelper.java",
 					"name_file":"DbHelper",
-					"write":"tmp/app/drivin2/source/local",
+					"write":"tmp/app/drivin2/data/source/local",
 					"ext":".java"
 				},
 				{
 					"name":"Task Local Data Source APP file Generator",
 					"type":"model",
-					"template":"EntidadLocalDataSource.java",
+					"template":"architecture/todomvc/data/source/local/EntityLocalDataSource.java",
 					"name_file":"LocalDataSource",
-					"write":"tmp/app/drivin2/source/local",
+					"write":"tmp/app/drivin2/data/source/local",
+					"ext":".java"
+				},
+				{
+					"name":"Task Remote Data Source APP file Generator",
+					"type":"model",
+					"template":"architecture/todomvc/data/source/remote/EntityRemoteDataSource.java",
+					"name_file":"RemoteDataSource",
+					"write":"tmp/app/drivin2/data/source/remote",
+					"ext":".java"
+				},
+				{
+					"name":"Task Repository APP file Generator",
+					"type":"model",
+					"template":"architecture/todomvc/data/source/EntityRepository.java",
+					"name_file":"Repository",
+					"write":"tmp/app/drivin2/data/source",
+					"ext":".java"
+				},
+				{
+					"name":"Task Data Source APP file Generator",
+					"type":"model",
+					"template":"architecture/todomvc/data/source/EntityDataSource.java",
+					"name_file":"Repository",
+					"write":"tmp/app/drivin2/data/source",
 					"ext":".java"
 				}
 			]
