@@ -1,0 +1,134 @@
+---
+author:
+  name: Carlos Hinostroza Droguett
+  email: chinostroza@gmail.com
+app:
+  package: com.example.app
+objects:
+- name: commerce
+  properties:
+  - name: id
+    type: integer
+    length: bigint
+  - name: nombres
+    type: string
+    length: '100'
+  - name: apellidoPaterno
+    type: string
+    length: '100'
+  - name: apellidoMaterno
+    type: string
+    length: '100'
+  - name: rut
+    type: number
+    length: '12'
+  - name: celular
+    type: number
+    length: '9'
+  - name: email
+    type: string
+    length: '150'
+  - name: register
+    type: boolean
+  methods:
+  - name: addCommerce
+    type: add
+    params:
+    - name: nombres
+      type: string
+      length: '100'
+    - name: apellidoPaterno
+      type: string
+      length: '100'
+    - name: apellidoMaterno
+      type: string
+      length: '100'
+    - name: rut
+      type: number
+      length: '12'
+    - name: celular
+      type: number
+      length: '9'
+    - name: email
+      type: string
+      length: '150'
+    - name: register
+      type: boolean
+  - name: getCommerce
+    type: get
+    param:
+      name: id
+      type: integer
+      length: bigint
+  - name: saveCommerce
+    type: save
+    params:
+    - name: id
+      type: integer
+      length: bigint
+usecase:
+  name: registercommerce
+screen:
+  name: registercommerce
+api:
+  url_base: http://localhost:3000
+  api_version: '1'
+  version_header: application/vnd.railsapibase.v
+  resources:
+  - response: CommerceEntity
+    type: function
+    url: "/commerces"
+    http_method: POST
+    method: createUser
+    params:
+    - type: CommercesWrapper
+      name: commerceWrapper
+      decorator: "@Body"
+  - response: Void
+    type: void
+    url: "/commerces/0"
+    http_method: DELETE
+    method: deleteCommerce
+    params:
+    - type: String
+      name: token
+      decorator: '@Header("Authorization")'
+  - response: MessageEntity
+    type: function
+    url: "/commerces/reset_password"
+    http_method: POST
+    method: resetPassword
+    params:
+    - type: String
+      name: token
+      decorator: '@Header("Authorization")'
+    - type: CommerceWrapper
+      name: commerceWrapper
+      decorator: '@Body'
+  - response: CommerceEntity
+    type: function
+    url: "/commerces/login"
+    http_method: POST
+    method: doLogin
+    params:
+    - type: CommerceWrapper
+      name: commerceWrapper
+      decorator: '@Body'
+  - response: Void
+    type: void
+    url: "/commerces/logout"
+    http_method: DELETE
+    method: "doLogout"
+    params:
+    - type: String
+      name: token
+      decorator: '@Header("Authorization")'
+  - response: VersionEntity
+    type: function
+    url: "/versions/state"
+    http_method: GET
+    method: "checkVersionExpiration"
+    params:
+    - type: String
+      name: token
+      decorator: '@Header("Authorization")'
