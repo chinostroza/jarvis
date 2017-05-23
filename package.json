@@ -1,11 +1,16 @@
 {
-  "name": "node-mysql",
-  "version": "0.0.1",
-  "dependencies": {
-    "ast-query": "^2.0.0",
-    "express": "^4.10.6",
-    "mysql": "^2.5.4",
-    "php-parser": "^0.1.1",
-    "swig": "^1.4.2"
-  }
+  "name": "libgenerator",
+  "version": "1.0.0",
+  "description": "generator files",
+  "main": "activity.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://carlos_hinostroza@bitbucket.org/carlos_hinostroza/libgenerator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/carlos_hinostroza/libgenerator#readme"
 }
