@@ -12,5 +12,8 @@
   },
   "author": "",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/carlos_hinostroza/libgenerator#readme"
+  "homepage": "https://bitbucket.org/carlos_hinostroza/libgenerator#readme",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
 }
