@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+console.log("");
+console.log("JARVIS CODE GENERATOR");
+var path = require("path");
+var pathToLib = path.join(__dirname, "..", "lib");
+
+var pathToCliExecutable = path.join(pathToLib, "jarvis.js");
+
+
+var childProcess = require("child_process");
+var args = process.argv;
+
+// Remove `node` and `nativescript` from the arguments.
+args.shift();
+args.shift();
+
+args.unshift(pathToCliExecutable);
+
+var nodeProcess = childProcess.spawn(process.execPath, args, { stdio: "inherit" });
+
+nodeProcess.on("close", function (code) {
+	// We need this handler so if command fails, we'll exit with same exit code as CLI.
+	process.exit(code);
+});
