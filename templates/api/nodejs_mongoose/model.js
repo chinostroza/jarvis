@@ -1,17 +1,15 @@
 exports = module.exports = function(app, mongoose) {
 
-	var {{ entidad }}Schema = new mongoose.Schema({
-		{% spaceless %}
-		{% for  campo in schema %}
+	var {{ name }}Schema = new mongoose.Schema({
+		{% for  property in properties %}
 			{% if loop.last %}
-				{{ campo.name }} : { type:{{ campo.type }}}
+				{{ property.name }} : { type:{{ property.type }}}
 			{% else %}
-				{{ campo.name }} : { type:{{ campo.type }}},
+				{{ property.name }} : { type:{{ property.type }}},
 			{% endif %}
 		{% endfor %}
-		{% endspaceless %}
 	});
 
-	mongoose.model('{{ entidad|capitalize}}', {{ entidad }}Schema);
+	mongoose.model('{{ name|capitalize}}', {{ name }}Schema);
 
 };

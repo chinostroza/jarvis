@@ -5,7 +5,7 @@ var express         = require("express"),
     mongoose        = require('mongoose');
 
 // Connection to DB
-mongoose.connect('mongodb://localhost/{{ dbname }}', function(err, res) {
+mongoose.connect('mongodb://localhost/{{ api.dbname }}', function(err, res) {
   if(err) throw err;
   console.log('Connected to Database');
 });
@@ -16,15 +16,12 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 
 // Import Models and controllers
-
-    {% for  model in models %}
-var {{ model }}_model = require('./models/{{ model }}')(app, mongoose);
-    {% endfor %}
-    {% for  controller in controllers %}
-var {{ controller }}_controller = require('./controllers/{{ controller }}s');
-    {% endfor %}
-
-
+{% for  object in objects %}
+var {{ object.name }}_model = require('./models/{{ object.name }}')(app, mongoose);
+{% endfor %}
+{% for  object in objects %}
+var {{ object.name }}_controller = require('./controllers/{{ object.name }}');
+{% endfor %}
 
 // Example Route
 var router = express.Router();
@@ -34,28 +31,28 @@ router.get('/', function(req, res) {
 app.use(router);
 
 // API routes
-var {{ nameapp }} = express.Router();
+var {{ app.name }} = express.Router();
 
-{% for  controller in controllers %}
+{% for  object in objects %}
 
-{{ nameapp }}.route('/{{ controller }}s')
-  .get({{ controller }}_controller.findAll{{ controller|capitalize }}s)
-  .post({{ controller }}_controller.add{{ controller|capitalize }});
-
-{% endfor %}
-
-{% for  controller in controllers %}
-
-{{ nameapp }}.route('/{{ controller }}/:id')
-  .get({{ controller }}_controller.findById)
-  .put({{ controller }}_controller.update{{ controller|capitalize }})
-  .delete({{ controller }}_controller.delete{{ controller|capitalize }});
+{{ app.name }}.route('/{{ object.name }}')
+  .get({{ object.name }}_controller.findAll{{ object.name|capitalize }}s)
+  .post({{ object.name }}_controller.add{{ object.name|capitalize }});
 
 {% endfor %}
 
-app.use('/api', {{ nameapp }});
+{% for  object in objects %}
+
+{{ app.name }}.route('/{{ object.name }}/:id')
+  .get({{ object.name }}_controller.findById)
+  .put({{ object.name }}_controller.update{{ object.name|capitalize }})
+  .delete({{ object.name }}_controller.delete{{ object.name|capitalize }});
+
+{% endfor %}
+
+app.use('/api', {{ app.name }});
 
 // Start server
-app.listen({{ port }}, function() {
-  console.log("Node server running on http://localhost:{{ port }}");
+app.listen({{ api.port }}, function() {
+  console.log("Node server running on http://localhost:{{ api.port }}");
 });

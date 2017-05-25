@@ -1,70 +1,70 @@
-//File: controllers/{{ entidad }}s.js
+//File: controllers/{{ name }}s.js
 var mongoose = require('mongoose');
-var {{ entidad|capitalize }}  = mongoose.model('{{ entidad|capitalize }}');
+var {{ name|capitalize }}  = mongoose.model('{{ name|capitalize }}');
 
-//GET - Return all {{ entidad }}s in the DB
-exports.findAll{{ entidad|capitalize }}s = function(req, res) {
-	{{ entidad|capitalize }}.find(function(err, {{ entidad }}s) {
+//GET - Return all {{ name }}s in the DB
+exports.findAll{{ name|capitalize }}s = function(req, res) {
+	{{ name|capitalize }}.find(function(err, {{ name }}s) {
     if(err) res.send(500, err.message);
 
-    console.log('GET /{{ entidad }}s')
-		res.status(200).jsonp({{ entidad }}s);
+    console.log('GET /{{ name }}s')
+		res.status(200).jsonp({{ name }}s);
 	});
 };
 
-//GET - Return a {{ entidad|capitalize }} with specified ID
+//GET - Return a {{ name|capitalize }} with specified ID
 exports.findById = function(req, res) {
-	{{ entidad|capitalize }}.findById(req.params.id, function(err, {{ entidad }}) {
+	{{ name|capitalize }}.findById(req.params.id, function(err, {{ name }}) {
     if(err) return res.send(500, err.message);
 
-    console.log('GET /{{ entidad }}/' + req.params.id);
-		res.status(200).jsonp({{ entidad }});
+    console.log('GET /{{ name }}/' + req.params.id);
+		res.status(200).jsonp({{ name }});
 	});
 };
 
-//POST - Insert a new {{ entidad }} in the DB
-exports.add{{ entidad|capitalize }} = function(req, res) {
+//POST - Insert a new {{ name }} in the DB
+exports.add{{ name|capitalize }} = function(req, res) {
 	console.log('POST');
 	console.log(req.body);
 
-	var {{ entidad }} = new {{ entidad|capitalize }} ({
-		{% spaceless %}
-		{% for  campo in schema %}
+	var {{ name }} = new {{ name|capitalize }} ({
+
+		{% for  property in properties %}
 			{% if loop.last %}
-				{{ campo.name }} : req.body.{{ campo.name }}
+				{{ property.name }} : req.body.{{ property.name }}
 			{% else %}
-				{{ campo.name }} : req.body.{{ campo.name }},
+				{{ property.name }} : req.body.{{ property.name }},
 			{% endif %}
 		{% endfor %}
-		{% endspaceless %}
+
 	});
 
-	{{ entidad }}.save(function(err, {{ entidad }}) {
+	{{ name }}.save(function(err, {{ name }}) {
 		if(err) return res.send(500, err.message);
-    res.status(200).jsonp({{ entidad }});
+    res.status(200).jsonp({{ name }});
 	});
 };
 
 //PUT - Update a register already exists
-exports.update{{ entidad|capitalize }} = function(req, res) {
-	{{ entidad|capitalize }}.findById(req.params.id, function(err, {{ entidad }}) {
-		{% spaceless %}
-		{% for  campo in schema %}
-			{{ entidad }}.{{ campo.name }} = req.body.{{ campo.name }};
-		{% endfor %}
-		{% endspaceless %}
+exports.update{{ name|capitalize }} = function(req, res) {
+	{{ name|capitalize }}.findById(req.params.id, function(err, {{ name }}) {
 
-		{{ entidad }}.save(function(err) {
+		{% for  property in properties %}
+			{{ name }}.{{ property.name }} = req.body.{{ property.name }};
+		{% endfor %}
+
+
+		{{ name }}.save(function(err) {
 			if(err) return res.send(500, err.message);
-      res.status(200).jsonp({{ entidad }});
+      res.status(200).jsonp({{ name }});
 		});
 	});
 };
 
-//DELETE - Delete a {{ entidad|capitalize }} with specified ID
-exports.delete{{ entidad|capitalize }} = function(req, res) {
-	{{ entidad|capitalize }}.findById(req.params.id, function(err, {{ entidad }}) {
-		{{ entidad }}.remove(function(err) {
+//DELETE - Delete a {{ name|capitalize }} with specified ID
+exports.delete{{ name|capitalize }} = function(req, res) {
+	{{ name|capitalize }}.findById(req.params.id, function(err, {{ name }}) {
+		{{ name }}.remove(function(err) {
 			if(err) return res.send(500, err.message);
       res.status(200);
 		})
