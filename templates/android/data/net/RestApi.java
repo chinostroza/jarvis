@@ -1,8 +1,8 @@
-package {{ app.package }}.data.source.remote.net;
+package {{ app.package }}.data.net;
 
 {% for object in objects %}
-import {{ app.package }}.data.source.remote.net.wrapper.{{object.name|capitalize}}Wrapper;
-import {{ app.package }}.domain.model.{{object.name|capitalize}};
+import {{ app.package }}.data.net.wrapper.{{object.name|capitalize}}Wrapper;
+import {{ app.package }}.domain.entity.{{object.name|capitalize}};
 {% endfor %}
 
 import java.util.List;

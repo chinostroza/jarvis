@@ -1,65 +1,21 @@
-package cl.multicaja.comercio.domain.entity;
+package {{ app.package }}.domain.entity;
 
-public class UserEntity {
+public class {{ name|capitalize }} {
 
-    private String email;
-    private String authToken;
-    private String password;
-    private String passwordConfirmation;
-    private String newPassword;
-    private String newPasswordConfirmation;
+    {% for property in properties %}
+    private {{ property.type }} {{ property.name }};
+    {% endfor %}
 
-    public UserEntity() {}
+    public {{ name|capitalize }}() {}
 
-    public UserEntity(String email) {
-        this.email = email;
+
+    {% for property in properties %}
+    public {{ property.type }} get{{ property.name }}() {
+        return {{ property.name }};
     }
 
-    public String getEmail() {
-        return email;
+    public void set{{ property.name }}({{ property.type }} {{ property.name }}) {
+        this.{{ property.name }} = {{ property.name }};
     }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getAuthToken() {
-        return authToken;
-    }
-
-    public void setAuthToken(String authToken) {
-        this.authToken = authToken;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPasswordConfirmation() {
-        return passwordConfirmation;
-    }
-
-    public void setPasswordConfirmation(String passwordConfirmation) {
-        this.passwordConfirmation = passwordConfirmation;
-    }
-
-    public String getNewPassword() {
-        return newPassword;
-    }
-
-    public void setNewPassword(String newPassword) {
-        this.newPassword = newPassword;
-    }
-
-    public String getNewPasswordConfirmation() {
-        return newPasswordConfirmation;
-    }
-
-    public void setNewPasswordConfirmation(String newPasswordConfirmation) {
-        this.newPasswordConfirmation = newPasswordConfirmation;
-    }
+    {% endfor %}
 }
