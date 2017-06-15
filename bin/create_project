@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+git clone git://github.com/chinostroza/android-base.git --origin android-base $1
+cd $1
+ls -l
+
+#rm -rf .git/
+
+#git init
+#git add .
+#git commit -m "Initialize project from android-base"
+#git remote add origin "$1"
+#git push -u origin master
+
+#rm bin/reset_git
