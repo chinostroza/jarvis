@@ -1,0 +1,40 @@
+---
+author:
+  name: Carlos Hinostroza Droguett
+  email: c@zea.cl
+app:
+  name : awto
+  package: com.mobiag.awto.api2.response
+entity:
+  name_class: TripDetail
+properties:
+  - name: tripId
+    type: int
+  - name: userId
+    type: int
+  - name: startZone
+    type: StartZone
+  - name: tripStatusCode
+    type: int
+  - name: vehicleInfo
+    type: VehicleInfo
+  - name: userInfo
+    type: UserInfo
+  - name: extraTime
+    type: int
+  - name: extraEndTime
+    type: int
+  - name: tripStatusName
+    type: String
+  - name: tripType
+    type: String
+  - name: bookingTime
+    type: Long
+  - name: repriceRequired
+    type: boolean
+  - name: reservedParkingTime
+    type: int
+  - name: timeRemainingToStartTrip
+    type: int
+  - name: parkingTimeLeft
+    type: int

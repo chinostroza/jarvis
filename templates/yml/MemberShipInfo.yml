@@ -1,0 +1,24 @@
+---
+author:
+  name: Carlos Hinostroza Droguett
+  email: c@zea.cl
+app:
+  name : awto
+  package: com.mobiag.awto.api2.response
+entity:
+  name_class: MemberShipInfo
+properties:
+  - name: membershipId
+    type: int
+  - name: membershipType
+    type: String
+  - name: membershipName
+    type: String
+  - name: membershipActive
+    type: boolean
+  - name: membershipAmount
+    type: int
+  - name: memberId
+    type: int
+  - name: renewalDate
+    type: Long

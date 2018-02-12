@@ -1,0 +1,12 @@
+---
+author:
+  name: Carlos Hinostroza Droguett
+  email: c@zea.cl
+app:
+  name : awto
+  package: com.mobiag.awto.api2.response
+entity:
+  name_class: ProfileRequest
+properties:
+  - name: userToken
+    type: String

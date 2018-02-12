@@ -1,0 +1,14 @@
+---
+author:
+  name: Carlos Hinostroza Droguett
+  email: c@zea.cl
+app:
+  name : awto
+  package: com.mobiag.awto.api2.response
+entity:
+  name_class: CurrentTripResponse
+properties:
+  - name: tripDetail
+    type: TripDetail
+  - name: success
+    type: boolean
