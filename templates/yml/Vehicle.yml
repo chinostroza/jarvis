@@ -4,11 +4,11 @@ author:
   email: c@zea.cl
 app:
   name : awto
-  package: com.mobiag.awto.api2.response
+  package: package com.mobiag.awto.domain.entity
 entity:
   name_class: Vehicle
 properties:
-  - name: userToken
+  - name: vehicleId
     type: String
   - name: errors
     type: ArrayList<String>
