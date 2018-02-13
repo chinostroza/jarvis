@@ -1,0 +1,36 @@
+---
+author:
+  name: Carlos Hinostroza Droguett
+  email: c@zea.cl
+app:
+  name : awto
+  package: com.mobiag.awto.api2.response
+entity:
+  name_class: User
+properties:
+  - name: userId
+    type: int
+  - name: firstName
+    type: String
+  - name: lastName
+    type: String
+  - name: emailAddress
+    type: String
+  - name: activeStatus
+    type: String
+  - name: role
+    type: String
+  - name: registrationStep
+    type: String
+  - name: personalInfoUpdated
+    type: boolean
+  - name: userType
+    type: String
+  - name: city
+    type: String
+  - name: state
+    type: String
+  - name: mobileNo
+    type: String
+  - name: memberShipInfo
+    type: memberShipInfo

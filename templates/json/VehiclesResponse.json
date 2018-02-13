@@ -1,0 +1,62 @@
+{
+            "vehicleId": 2000,
+            "vehicleModel": "Terrano",
+            "vehicleType": "Cargo",
+            "typeOfOperation": "FREE_FLOAT",
+            "vehicleImageUrl": "",
+            "vehiclePrice": 0,
+            "vehicleMake": "Nissan",
+            "vehicleCurrentStatus": "DEACTIVE",
+            "simNumber": "7000000101501",
+            "transmission": "AUTOMATIC",
+            "combustible": "DIESEL",
+            "fuelPercent": 22.32,
+            "kilometer": 667219.13,
+            "patent": "KK56711",
+            "obs": "",
+            "insuranceCompany": "Tata",
+            "insuranceNumber": "Company",
+            "stationBasedzoneIds": [],
+            "inventory": [
+                "Item N",
+                "Cables USB",
+                "Gomas Originales",
+                "Kit primeros Auxilios",
+                "Aromatizador",
+                "Patente",
+                "TAG",
+                "Documentación Legal",
+                "Kit de Emergencia (G, E, T, L)",
+                "Aceite Motor"
+            ],
+            "inventories": [
+                {
+                    "accessoriesId": 118,
+                    "creationDate": 1510841857000,
+                    "user": "awto carsharing",
+                    "totalKms": 667219.13,
+                    "awInventory": [
+                        "Item N",
+                        "Cables USB",
+                        "Gomas Originales",
+                        "Kit primeros Auxilios",
+                        "Aromatizador",
+                        "Patente",
+                        "TAG",
+                        "Documentación Legal",
+                        "Kit de Emergencia (G, E, T, L)",
+                        "Aceite Motor"
+                    ],
+                    "active": true
+                }
+            ],
+            "maintenances": [],
+            "latitude": -33.429504395,
+            "longitude": -70.623138428,
+            "fleetVehicleId": 1063275,
+            "damageReports": [],
+            "lastModifiedDate": 1518463574000,
+            "zoneInfo": "Tiene 2 zonas asignada",
+            "order": 0,
+            "voltage": 13
+}
