@@ -1,0 +1,43 @@
+        {
+            "id": 1053,
+            "url": "",
+            "name": "Zona Los Estanques Providencia",
+            "regionComuna": "Los Estanques 1932, Providencia, Región Metropolitana, Chile",
+            "lat": -33.4351571,
+            "lng": -70.6090788,
+            "totalSpace": 2,
+            "availSpace": 2,
+            "spaceStatus": "success",
+            "kilometer": 1462,
+            "distance": "1KM",
+            "fuel": false,
+            "charging": false,
+            "formattedAddress": "Los Estanques 1932, Providencia, Región Metropolitana, Chile",
+            "description": "Se pueden estacionar sólo en la calle los estanques, siempre y cuando esté permitido. Cualquier parte será cobrado al cliente.",
+            "imageUrl": "",
+            "showZoneInfo": true,
+            "isArea": true,
+            "polygonList": [
+                {
+                    "lat": -33.434131902,
+                    "lng": -70.606454422
+                },
+                {
+                    "lat": -33.4349198,
+                    "lng": -70.606368592
+                },
+                {
+                    "lat": -33.435904662,
+                    "lng": -70.610391905
+                },
+                {
+                    "lat": -33.434982473,
+                    "lng": -70.610445549
+                },
+                {
+                    "lat": -33.43524212,
+                    "lng": -70.610424092
+                }
+            ],
+            "hasBikeRack": false
+        }

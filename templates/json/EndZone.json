@@ -1,0 +1,17 @@
+{
+            "zoneId": 1000,
+            "zoneName": "Centro de Movilidad",
+            "latitude": -33.4291191,
+            "longitude": -70.622776,
+            "zonePrice": 0,
+            "zoneStatus": "ACTIVE",
+            "region": "Región Metropolitana",
+            "noOfParking": 0,
+            "zoneAddress": "Pérez Valenzuela 1098, Providencia, Región Metropolitana, Chile",
+            "availableParkingSlot": 0,
+            "city": "Providencia",
+            "endZonePrice": 0,
+            "description": "",
+            "imageUrl": "",
+            "enableZoneInfo": false
+}

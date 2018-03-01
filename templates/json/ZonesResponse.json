@@ -1,0 +1,35 @@
+{
+    "zones": [
+        {
+            "zoneId": 1000,
+            "zoneName": "Centro de Movilidad",
+            "latitude": -33.4291191,
+            "longitude": -70.622776,
+            "zonePrice": 0,
+            "zoneStatus": "ACTIVE",
+            "zoneParkingInventory": {
+                "zoneParkingId": 97,
+                "noOfParking": 3
+            },
+            "region": "Región Metropolitana",
+            "infrastructure": [
+                "PETROL",
+                "CHARGING"
+            ],
+            "noOfParking": 3,
+            "zoneAddress": "Pérez Valenzuela 1098, Providencia, Región Metropolitana, Chile",
+            "zoneIncharge": 106,
+            "availableParkingSlot": 3,
+            "city": "Providencia",
+            "zoneInchargeName": "Seba Breit",
+            "polyCordinate": "[{\"lat\":-33.429077526,\"lng\":-70.623357296},{\"lat\":-33.428253759,\"lng\":-70.621984005},{\"lat\":-33.429650576,\"lng\":-70.620911121},{\"lat\":-33.430187808,\"lng\":-70.621640682},{\"lat\":-33.430438515,\"lng\":-70.622627735},{\"lat\":-33.429901285,\"lng\":-70.623700619},{\"lat\":-33.429328236,\"lng\":-70.623700619}]",
+            "endZonePrice": 0,
+            "description": "",
+            "imageUrl": "",
+            "enableZoneInfo": false,
+            "showZoneInfo": "no"
+        }
+    ],
+    "errors": [],
+    "success": true
+}

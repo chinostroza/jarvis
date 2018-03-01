@@ -1,0 +1,247 @@
+{
+    "status": "success",
+    "message": "",
+    "location": "string",
+    "lat": -33.4291622,
+    "lng": -70.6230998,
+    "radius": 10,
+    "zonesFound": 67,
+    "zones": [
+        {
+            "id": 1032,
+            "url": "",
+            "name": "Unimarc Los Leones",
+            "regionComuna": "Gral José Artigas 3250, Ñuñoa, Región Metropolitana, Chile",
+            "lat": -33.4483346,
+            "lng": -70.5980705,
+            "totalSpace": 2,
+            "availSpace": 2,
+            "spaceStatus": "success",
+            "defaultValue": "true",
+            "kilometer": 3153,
+            "distance": "3KM",
+            "fuel": false,
+            "charging": false,
+            "formattedAddress": "Gral José Artigas 3250, Ñuñoa, Región Metropolitana, Chile",
+            "description": "",
+            "imageUrl": "",
+            "showZoneInfo": true,
+            "isArea": false,
+            "hasBikeRack": false
+        },
+        {
+            "id": 1099,
+            "url": "",
+            "name": "Ciudad Empresarial IFB",
+            "regionComuna": "Del Parque 4023, Huechuraba, Chile",
+            "lat": -33.3940895,
+            "lng": -70.6205829,
+            "totalSpace": 2,
+            "availSpace": 2,
+            "spaceStatus": "success",
+            "kilometer": 3907,
+            "distance": "4KM",
+            "fuel": false,
+            "charging": false,
+            "formattedAddress": "Del Parque 4023, Huechuraba, Chile",
+            "description": "",
+            "imageUrl": "",
+            "showZoneInfo": false,
+            "isArea": false,
+            "hasBikeRack": false
+        },
+        {
+            "id": 1106,
+            "url": "",
+            "name": "Zona Lo Curro",
+            "regionComuna": "Lo Curro, Vitacura, Chile",
+            "lat": -33.3727476,
+            "lng": -70.5772123,
+            "totalSpace": 20,
+            "availSpace": 20,
+            "spaceStatus": "success",
+            "kilometer": 7583,
+            "distance": "8KM",
+            "fuel": false,
+            "charging": false,
+            "formattedAddress": "Lo Curro, Vitacura, Chile",
+            "description": "Se pueden estacionar en toda la zona, que esté permitido. Cualquier parte será cobrado al cliente.",
+            "imageUrl": "",
+            "showZoneInfo": true,
+            "isArea": true,
+            "polygonList": [
+                {
+                    "lat": -33.379628419,
+                    "lng": -70.58283421
+                },
+                {
+                    "lat": -33.365794553,
+                    "lng": -70.584550824
+                },
+                {
+                    "lat": -33.366583071,
+                    "lng": -70.570131268
+                },
+                {
+                    "lat": -33.377191524,
+                    "lng": -70.568929639
+                }
+            ],
+            "hasBikeRack": false
+        },
+        {
+            "id": 1104,
+            "url": "",
+            "name": "Zona Vitacura Padre Hurtado Norte",
+            "regionComuna": "Vitacura,Región Metropolitana,Chile",
+            "lat": -33.3785513,
+            "lng": -70.5473208,
+            "totalSpace": 20,
+            "availSpace": 20,
+            "spaceStatus": "success",
+            "kilometer": 9008,
+            "distance": "9KM",
+            "fuel": false,
+            "charging": false,
+            "formattedAddress": "Vitacura,Región Metropolitana,Chile",
+            "description": "",
+            "imageUrl": "",
+            "showZoneInfo": true,
+            "isArea": true,
+            "polygonList": [
+                {
+                    "lat": -33.380414785,
+                    "lng": -70.542578654
+                },
+                {
+                    "lat": -33.376616101,
+                    "lng": -70.542964893
+                },
+                {
+                    "lat": -33.375469296,
+                    "lng": -70.548801379
+                },
+                {
+                    "lat": -33.378622973,
+                    "lng": -70.557084041
+                },
+                {
+                    "lat": -33.383998296,
+                    "lng": -70.56133266
+                },
+                {
+                    "lat": -33.385825831,
+                    "lng": -70.561075168
+                },
+                {
+                    "lat": -33.385503327,
+                    "lng": -70.557341533
+                }
+            ],
+            "hasBikeRack": false
+        },
+        {
+            "id": 1053,
+            "url": "",
+            "name": "Zona Los Estanques Providencia",
+            "regionComuna": "Los Estanques 1932, Providencia, Región Metropolitana, Chile",
+            "lat": -33.4351571,
+            "lng": -70.6090788,
+            "totalSpace": 2,
+            "availSpace": 2,
+            "spaceStatus": "success",
+            "kilometer": 1462,
+            "distance": "1KM",
+            "fuel": false,
+            "charging": false,
+            "formattedAddress": "Los Estanques 1932, Providencia, Región Metropolitana, Chile",
+            "description": "Se pueden estacionar sólo en la calle los estanques, siempre y cuando esté permitido. Cualquier parte será cobrado al cliente.",
+            "imageUrl": "",
+            "showZoneInfo": true,
+            "isArea": true,
+            "polygonList": [
+                {
+                    "lat": -33.434131902,
+                    "lng": -70.606454422
+                },
+                {
+                    "lat": -33.4349198,
+                    "lng": -70.606368592
+                },
+                {
+                    "lat": -33.435904662,
+                    "lng": -70.610391905
+                },
+                {
+                    "lat": -33.434982473,
+                    "lng": -70.610445549
+                },
+                {
+                    "lat": -33.43524212,
+                    "lng": -70.610424092
+                }
+            ],
+            "hasBikeRack": false
+        },
+        {
+            "id": 1107,
+            "url": "",
+            "name": "Zona Las Condes Colon Manquehue",
+            "regionComuna": "Las Condes, Región Metropolitana, Chile",
+            "lat": -33.42135888,
+            "lng": -70.567717552,
+            "totalSpace": 20,
+            "availSpace": 20,
+            "spaceStatus": "success",
+            "kilometer": 5212,
+            "distance": "5KM",
+            "fuel": false,
+            "charging": false,
+            "formattedAddress": "Las Condes, Región Metropolitana, Chile",
+            "description": "Se pueden estacionar en toda la zona, que esté permitido. Cualquier parte será cobrado al cliente.",
+            "imageUrl": "",
+            "showZoneInfo": true,
+            "isArea": true,
+            "polygonList": [
+                {
+                    "lat": -33.426265941,
+                    "lng": -70.57031393
+                },
+                {
+                    "lat": -33.418923156,
+                    "lng": -70.572030544
+                },
+                {
+                    "lat": -33.41677393,
+                    "lng": -70.564906597
+                },
+                {
+                    "lat": -33.425585416,
+                    "lng": -70.563147068
+                }
+            ],
+            "hasBikeRack": false
+        },
+        {
+            "id": 1036,
+            "url": "",
+            "name": "Mall Costanera Center",
+            "regionComuna": "Andrés Bello 2461, Gran Torre Santiago, Providencia, Región Metropolitana, Chile",
+            "lat": -33.416889,
+            "lng": -70.606706,
+            "totalSpace": 4,
+            "availSpace": 4,
+            "spaceStatus": "success",
+            "kilometer": 2044,
+            "distance": "2KM",
+            "fuel": false,
+            "charging": false,
+            "formattedAddress": "Andrés Bello 2461, Gran Torre Santiago, Providencia, Región Metropolitana, Chile",
+            "description": "Entradas y Salida Andres Bello 24hrs. Habilitada EN CASO DE EMERGENCIA. Torre 1, piso -1, pasillo 7",
+            "imageUrl": "",
+            "showZoneInfo": true,
+            "isArea": false,
+            "hasBikeRack": false
+        }
+    ]
+}

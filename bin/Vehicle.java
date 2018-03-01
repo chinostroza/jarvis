@@ -3,7 +3,7 @@ package ;
 import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
-public class VehicleInfo {
+public class Vehicle {
 
     
     @SerializedName("vehicleId")
@@ -40,7 +40,7 @@ public class VehicleInfo {
     private String combustible;
     
     @SerializedName("fuelPercent")
-    private int fuelPercent;
+    private float fuelPercent;
     
     @SerializedName("kilometer")
     private float kilometer;
@@ -51,8 +51,11 @@ public class VehicleInfo {
     @SerializedName("obs")
     private String obs;
     
-    @SerializedName("obsDriver")
-    private String obsDriver;
+    @SerializedName("insuranceCompany")
+    private String insuranceCompany;
+    
+    @SerializedName("insuranceNumber")
+    private String insuranceNumber;
     
     @SerializedName("stationBasedzoneIds")
     private ArrayList<String> stationBasedzoneIds;
@@ -61,7 +64,7 @@ public class VehicleInfo {
     private ArrayList<String> inventory;
     
     @SerializedName("inventories")
-    private ArrayList<String> inventories;
+    private ArrayList<Inventories> inventories;
     
     @SerializedName("maintenances")
     private ArrayList<String> maintenances;
@@ -78,11 +81,11 @@ public class VehicleInfo {
     @SerializedName("damageReports")
     private ArrayList<String> damageReports;
     
-    @SerializedName("currentZone")
-    private String currentZone;
-    
     @SerializedName("lastModifiedDate")
     private int lastModifiedDate;
+    
+    @SerializedName("zoneInfo")
+    private String zoneInfo;
     
     @SerializedName("order")
     private int order;
@@ -91,7 +94,7 @@ public class VehicleInfo {
     private int voltage;
     
 
-    public VehicleInfo() {}
+    public Vehicle() {}
 
 
     
@@ -183,11 +186,11 @@ public class VehicleInfo {
         this.combustible = combustible;
     }
     
-    public int getFuelpercent() {
+    public float getFuelpercent() {
         return fuelPercent;
     }
 
-    public void setFuelpercent(int fuelPercent) {
+    public void setFuelpercent(float fuelPercent) {
         this.fuelPercent = fuelPercent;
     }
     
@@ -215,12 +218,20 @@ public class VehicleInfo {
         this.obs = obs;
     }
     
-    public String getObsdriver() {
-        return obsDriver;
+    public String getInsurancecompany() {
+        return insuranceCompany;
     }
 
-    public void setObsdriver(String obsDriver) {
-        this.obsDriver = obsDriver;
+    public void setInsurancecompany(String insuranceCompany) {
+        this.insuranceCompany = insuranceCompany;
+    }
+    
+    public String getInsurancenumber() {
+        return insuranceNumber;
+    }
+
+    public void setInsurancenumber(String insuranceNumber) {
+        this.insuranceNumber = insuranceNumber;
     }
     
     public ArrayList<String> getStationbasedzoneids() {
@@ -239,11 +250,11 @@ public class VehicleInfo {
         this.inventory = inventory;
     }
     
-    public ArrayList<String> getInventories() {
+    public ArrayList<Inventories> getInventories() {
         return inventories;
     }
 
-    public void setInventories(ArrayList<String> inventories) {
+    public void setInventories(ArrayList<Inventories> inventories) {
         this.inventories = inventories;
     }
     
@@ -287,20 +298,20 @@ public class VehicleInfo {
         this.damageReports = damageReports;
     }
     
-    public String getCurrentzone() {
-        return currentZone;
-    }
-
-    public void setCurrentzone(String currentZone) {
-        this.currentZone = currentZone;
-    }
-    
     public int getLastmodifieddate() {
         return lastModifiedDate;
     }
 
     public void setLastmodifieddate(int lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
+    }
+    
+    public String getZoneinfo() {
+        return zoneInfo;
+    }
+
+    public void setZoneinfo(String zoneInfo) {
+        this.zoneInfo = zoneInfo;
     }
     
     public int getOrder() {

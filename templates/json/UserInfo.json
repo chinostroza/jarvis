@@ -1,0 +1,29 @@
+{
+            "userId": 137,
+            "firstName": "Carlos",
+            "lastName": "Hinostroza",
+            "emailAddress": "chinostroza@gmail.com",
+            "activeStatus": "ACTIVE",
+            "role": "USER",
+            "registrationStep": "ACTIVE",
+            "personalInfoUpdated": true,
+            "userType": "USER",
+            "city": "Providencia",
+            "state": "Región Metropolitana",
+            "mobileNo": "123123123",
+            "membershipInfo": {
+                "membershipId": 129,
+                "membershipType": "PREPAID",
+                "membershipName": "Cero",
+                "membershipActive": true,
+                "membershipAmount": 0,
+                "memberId": 7,
+                "renewalDate": 1519834955000
+            },
+            "formattedAddress": "Pérez Valenzuela 1098, Providencia, Chile",
+            "latitude": -33.4291191,
+            "longitude": -70.622776,
+            "rutNo": "12.312.312-3",
+            "userExists": false,
+            "modifyMemberShip": true
+        }

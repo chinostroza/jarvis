@@ -3,11 +3,11 @@ package ;
 import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
-public class VehiclesResponse {
+public class ZonesResponse {
 
     
-    @SerializedName("vehicles")
-    private ArrayList<Vehicles> vehicles;
+    @SerializedName("zones")
+    private ArrayList<Zones> zones;
     
     @SerializedName("errors")
     private ArrayList<String> errors;
@@ -16,16 +16,16 @@ public class VehiclesResponse {
     private boolean success;
     
 
-    public VehiclesResponse() {}
+    public ZonesResponse() {}
 
 
     
-    public ArrayList<Vehicles> getVehicles() {
-        return vehicles;
+    public ArrayList<Zones> getZones() {
+        return zones;
     }
 
-    public void setVehicles(ArrayList<Vehicles> vehicles) {
-        this.vehicles = vehicles;
+    public void setZones(ArrayList<Zones> zones) {
+        this.zones = zones;
     }
     
     public ArrayList<String> getErrors() {

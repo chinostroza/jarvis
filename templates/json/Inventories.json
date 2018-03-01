@@ -1,0 +1,20 @@
+{
+                    "accessoriesId": 135,
+                    "creationDate": 1517205164000,
+                    "user": "awto carsharing",
+                    "totalKms": 667219.13,
+                    "awInventory": [
+                        "Kit de Emergencia (G, E, T, L)",
+                        "Patente",
+                        "Cables USB",
+                        "Kit primeros Auxilios",
+                        "Aromatizador",
+                        "Aceite Motor",
+                        "Documentación Legal",
+                        "Gomas Originales",
+                        "Item N",
+                        "TAG"
+                    ],
+                    "active": true,
+                    "comment": ",test"
+                }

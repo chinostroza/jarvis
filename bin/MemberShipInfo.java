@@ -1,4 +1,4 @@
-package com.mobiag.awto.api2.response;
+package ;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class MemberShipInfo {
     private int memberId;
     
     @SerializedName("renewalDate")
-    private Long renewalDate;
+    private int renewalDate;
     
 
     public MemberShipInfo() {}
@@ -80,11 +80,11 @@ public class MemberShipInfo {
         this.memberId = memberId;
     }
     
-    public Long getRenewaldate() {
+    public int getRenewaldate() {
         return renewalDate;
     }
 
-    public void setRenewaldate(Long renewalDate) {
+    public void setRenewaldate(int renewalDate) {
         this.renewalDate = renewalDate;
     }
     

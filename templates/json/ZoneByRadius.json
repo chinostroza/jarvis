@@ -1,0 +1,27 @@
+{
+            "id": 1030,
+            "name": "Pérez Valenzuela 1098, Providencia, Región Metropolitana, Chile",
+            "noOfCars": 1,
+            "distance": "30m",
+            "defaultValue": true,
+            "lat": "-33.4291191",
+            "lng": "-70.622776",
+            "cars": [
+                {
+                    "id": 2009,
+                    "img": "https://i.imgur.com/6h5sTHv.png",
+                    "model": "Suzuki Swift AUTOMÁTICO",
+                    "fuel": 0,
+                    "status": "danger",
+                    "tripType": "Zona Libre",
+                    "reserveUrl": "",
+                    "platNo": "JRVF72",
+                    "latitude": -33.429161072,
+                    "longitude": -70.622390747
+                }
+            ],
+            "kilometer": 30,
+            "description": "",
+            "imageUrl": "",
+            "showZoneInfo": true
+}

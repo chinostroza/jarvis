@@ -1,0 +1,15 @@
+{
+                    "id": 17,
+                    "description": "Service need to done",
+                    "creationDate": 1511435966000,
+                    "vehicleId": 2003,
+                    "lastModifiedDate": 1511446896000,
+                    "cost": 200,
+                    "maintenanceType": "AC Service",
+                    "maintenanceDate": 1511406000000,
+                    "userName": "awto carsharing",
+                    "vehiclePatent": "JJHS75",
+                    "userId": 100,
+                    "status": "CANCELLED",
+                    "dateString": "23/11/2017"
+                }

@@ -1,0 +1,15 @@
+{
+            "totalPrice": 416.5,
+            "extraKmAmount": 0,
+            "amount": 350,
+            "discount": 0,
+            "travelTimeAmount": 0,
+            "standByTimeAmount": 350,
+            "zoneAmount": 0,
+            "discountAmount": 0,
+            "totalDistance": 0,
+            "extraKm": 0,
+            "tax": 66.5,
+            "repriceRequired": false,
+            "endZoneAmount": 0
+        }
