@@ -1,0 +1,9 @@
+---
+author:
+  name: Carlos Hinostroza Droguett
+  email: c@zea.cl
+activity:
+  name_class: DondeDepositoInicio
+nextactivity:
+  name_class: DondeDepositoMenu
+nextactivityparams:
