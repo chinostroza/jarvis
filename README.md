@@ -5,3 +5,5 @@ jarvis is an open-source code generation tool focused on flexibility, you can cr
 ```bash
 ./bin/jarvis entity contrato.json DataClass.kt Person.kt
 ```
+
+***pre release not ready for production***
